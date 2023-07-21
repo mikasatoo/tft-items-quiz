@@ -50,8 +50,8 @@ const items: Item[] = [
         ability: "Grant 20% Omnivamp.",
     },
 
+    // *** Add all items
 ]
-
 
 export const QuizQuestions = () => {
     // Access variables and functions from the QuizContext
@@ -65,8 +65,9 @@ export const QuizQuestions = () => {
     const [options, setOptions] = useState<string[]>([]);
     const [answer, setAnswer] = useState<string>('');
     const [result, setResult] = useState<string>('');
-    
 
+    // ***
+    
 
     // Function to handle submitting an answer
     const handleSubmit = () => {

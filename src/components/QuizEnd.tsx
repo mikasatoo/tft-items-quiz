@@ -1,10 +1,9 @@
-import { useState } from 'react';
 import { useQuizContext } from '../context';
 
 export const QuizEnd = () => {
     // Access variables and functions from the QuizContext
     const { totalQuestionNum, updateTotalQuestionNum, updateQuizStatus, score, updateScore, rank } = useQuizContext();
-    
+
     // Function to reset quiz
     const resetQuiz = () => {
         updateTotalQuestionNum(0);
@@ -21,6 +20,7 @@ export const QuizEnd = () => {
             </div>
             <div className='rank'>
                 {rank}
+                {/* Also want to show the rank image */}
             </div>
             <div className='retry-btn-div'>
                 <button

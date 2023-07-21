@@ -23,12 +23,12 @@ export const QuizStart = () => {
                     10 questions
                 </button>
             </div>
-            <div className='start-btn-div'>
+            <div className='play-btn-div'>
                 <button
-                    className='start=btn'
+                    className='play-btn'
                     onClick={() => updateQuizStatus('play')}
                 >
-                    Start
+                    Play
                 </button>
             </div>
         </div>
