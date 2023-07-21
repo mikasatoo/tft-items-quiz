@@ -1,2 +1,2 @@
-export { QuestionsProvider } from './QuestionsContext';
-export type { Question } from './QuestionsContext';
+export { QuizProvider } from './QuizContext';
+export { useQuizContext } from './useQuizContext';

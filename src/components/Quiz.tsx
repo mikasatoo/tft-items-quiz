@@ -1,25 +1,28 @@
-import React, { useState } from 'react';
+import { QuizStart } from './QuizStart';
+import { QuizQuestions } from './QuizQuestions';
+import { QuizEnd } from './QuizEnd';
+import { useQuizContext } from '../context';
+
+type HandleViewProps = {
+    view: string
+}
 
 export const Quiz = () => {
-    const [totalQuestionNum, setTotalQuestionNum] = useState<number>(0);
-    const [currentQuestionNum, setCurrentQuestionNum] = useState<number>(0);
-
-    const [currentQuestion, setCurrentQuestion] = useState<string>('');
-    const [subject, setSubject] = useState<string>('');
-    const [correctOption, setCorrectOption] = useState<string>('');
-    const [options, setOptions] = useState<string[]>([]);
-
-    const [answer, setAnswer] = useState<string>('');
-    const [result, setResult] = useState<string>('');
-    const [score, setScore] = useState<number>(0);
-
-    const [showScore, setShowScore] = useState<boolean>(false);
-    const [rank, setRank] = useState<string>('');
-
+    // Access variables from the QuizContext
+    const { quizStatus } = useQuizContext();
+    
+    // Render the relevant component based on quizStatus
+    const HandleView = ({view}: HandleViewProps) => {
+        if (view === 'start') {
+            return <QuizStart />;
+        } else if (view === 'play') {
+            return <QuizQuestions />;
+        } else if (view === 'end') {
+            return <QuizEnd />;
+        }
+    }
+    
     return (
-        <div>
-            {/* Render quiz UI */}
-            Quiz
-        </div>
+        <HandleView view={quizStatus} />
     );
 }
