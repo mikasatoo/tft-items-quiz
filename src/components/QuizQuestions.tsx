@@ -1,4 +1,4 @@
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
 import { useQuizContext } from '../context';
 
 // Define type for Question objects
@@ -70,40 +70,32 @@ export const QuizQuestions = () => {
     const [answer, setAnswer] = useState<string>('');
     const [result, setResult] = useState<string>('');
 
-    // *** Function to handle quiz progress
-
-
-    // Function to handle generating each question
-    const handleQuestion = () => {
+    // Function to handle setting the subject / content for each question
+    const handleQuestionContent = () => {
         const randomQuestion = questions[Math.floor(Math.random() * questions.length)];
         setQuestionType(randomQuestion.type);
         setQuestionText(randomQuestion.text);
 
-        return questionText;
-    }
-
-    // Function to handle setting the subject / content for each question
-    const handleQuestionContent = () => {
         const itemsNotUsed = items.filter(item => {
-            item.used === false;
+            return item.used === false;
         })
-        console.log(items);
-        console.log(itemsNotUsed);  // *** Why empty ???
 
         const randomItemIndex = Math.floor(Math.random() * itemsNotUsed.length);
-        setSubject(itemsNotUsed[randomItemIndex]);
+        const newSubject = itemsNotUsed[randomItemIndex]
+
+        setSubject(newSubject);
         items[randomItemIndex].used = true;
 
-        // *** Also want to set image links for these and render them
-        if (questionType === 'chooseCombinedItem') {
-            setQuestionContent(`${subject.baseItem1} and ${subject.baseItem2}`);
-        } else if (questionType === 'chooseBaseItems' || questionType === 'chooseAbility') {
-            setQuestionContent(subject.name);
-        } else if (questionType === 'chooseItemFromAbility') {
-            setQuestionContent(subject.ability);
-        }
+        console.log({randomQuestion})
 
-        return questionContent;
+        // *** Also want to set image links for these and render them
+        if (randomQuestion.type === 'chooseCombinedItem') {
+            setQuestionContent(`${newSubject.baseItem1} and ${newSubject.baseItem2}`);
+        } else if (randomQuestion.type === 'chooseBaseItems' || randomQuestion.type === 'chooseAbility') {
+            setQuestionContent(newSubject.name);
+        } else if (randomQuestion.type === 'chooseItemFromAbility') {
+            setQuestionContent(newSubject.ability);
+        }
     }
 
     // *** Function to handle setting the four options for each question
@@ -154,6 +146,11 @@ export const QuizQuestions = () => {
 
     }
 
+    useEffect(() => {
+        handleQuestionContent();
+        console.log('FUCK')
+    }, [])
+
 
     // ***  Render the QuizQuestions view
     return (
@@ -167,10 +164,10 @@ export const QuizQuestions = () => {
             <div className='question-options-div'>
                 <div className='question'>
                     <div className='question-text'>
-                        {handleQuestion()}
+                        {questionText}
                     </div>
                     <div className='question-content'>
-                        {handleQuestionContent()}
+                        {questionContent}
                     </div>
                 </div>
 
