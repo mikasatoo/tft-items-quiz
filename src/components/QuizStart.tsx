@@ -26,6 +26,7 @@ export const QuizStart = () => {
             <div className='play-btn-div'>
                 <button
                     className='play-btn'
+                    // *** Want to only be able to click this if totalQuestionNum is 5 or 10
                     onClick={() => updateQuizStatus('play')}
                 >
                     Play
