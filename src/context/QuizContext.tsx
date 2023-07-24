@@ -4,12 +4,14 @@ import { createContext, useState } from 'react';
 interface QuizContextProps {
     totalQuestionNum: number
     updateTotalQuestionNum: (num: number) => void
+    currentQuestionNum: number
+    updateCurrentQuestionNum: (num: number) => void
     quizStatus: string
     updateQuizStatus: (status: string) => void
     score: number
     updateScore: (score: number) => void
     rank: string
-    updateRank: (score: number) => void
+    updateRank: (score: number, totalQuestionNum: number) => void
 }
 
 // Create the QuizContext
@@ -21,6 +23,7 @@ export const QuizContext = createContext<QuizContextProps | undefined>(
 export const QuizProvider = (props: { children: React.ReactNode }) => {
     // Define the state variables
     const [totalQuestionNum, setTotalQuestionNum] = useState<number>(0);
+    const [currentQuestionNum, setCurrentQuestionNum] = useState<number>(1);
     const [quizStatus, setQuizStatus] = useState<string>('start');
     const [score, setScore] = useState<number>(0);
     const [rank, setRank] = useState<string>('');
@@ -28,6 +31,10 @@ export const QuizProvider = (props: { children: React.ReactNode }) => {
     // Define the functions
     const updateTotalQuestionNum = (num: number) => {
         setTotalQuestionNum(num);
+    }
+
+    const updateCurrentQuestionNum = (num: number) => {
+        setCurrentQuestionNum(num);
     }
 
     const updateQuizStatus = (status: string) => {
@@ -38,19 +45,28 @@ export const QuizProvider = (props: { children: React.ReactNode }) => {
         setScore(score);
     }
 
-    const updateRank = (score: number) => {
-        if (score == 0 || score == 1) {
-            setRank('Normals player');
-        } else if (score == 2 || score == 3) {
-            setRank('Platinum');
-        }
+    const updateRank = (score: number, totalQuestionNum: number) => {
+        const scorePercentage = score / totalQuestionNum;
 
+        if (0 <= scorePercentage && scorePercentage <= 0.2) {
+            setRank('Normals player');
+        } else if (0.3 <= scorePercentage && scorePercentage <= 0.4) {
+            setRank('Platinum');
+        } else if (0.5 <= scorePercentage && scorePercentage <= 0.6) {
+            setRank('Diamond');
+        } else if (0.7 <= scorePercentage && scorePercentage <= 0.8) {
+            setRank('Master');
+        } else if (0.9 <= scorePercentage && scorePercentage <= 1) {
+            setRank('Grandmaster? Challenger?');
+        }
     }
     
     // Create value for the context
     const value: QuizContextProps = {
         totalQuestionNum,
         updateTotalQuestionNum,
+        currentQuestionNum,
+        updateCurrentQuestionNum,
         quizStatus,
         updateQuizStatus,
         score,

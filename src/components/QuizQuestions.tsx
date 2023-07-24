@@ -55,10 +55,9 @@ const items: Item[] = [
 
 export const QuizQuestions = () => {
     // Access variables and functions from the QuizContext
-    const { totalQuestionNum, updateQuizStatus, score, updateScore, updateRank } = useQuizContext();
+    const { totalQuestionNum, currentQuestionNum, updateCurrentQuestionNum, updateQuizStatus, score, updateScore, updateRank } = useQuizContext();
 
     // Create other state variables
-    const [currentQuestionNum, setCurrentQuestionNum] = useState<number>(0);
     const [currentQuestion, setCurrentQuestion] = useState<string>('');
     const [subject, setSubject] = useState<string>('');
     const [correctOption, setCorrectOption] = useState<string>('');
@@ -79,7 +78,7 @@ export const QuizQuestions = () => {
     const handleNext = () => {
 
         console.log('Next!');
-        updateRank(score);
+        updateRank(score, totalQuestionNum);
         updateQuizStatus('end');    // just to see what end view looks like
     }
 

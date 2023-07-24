@@ -2,11 +2,12 @@ import { useQuizContext } from '../context';
 
 export const QuizEnd = () => {
     // Access variables and functions from the QuizContext
-    const { totalQuestionNum, updateTotalQuestionNum, updateQuizStatus, score, updateScore, rank } = useQuizContext();
+    const { totalQuestionNum, updateTotalQuestionNum, updateCurrentQuestionNum, updateQuizStatus, score, updateScore, rank } = useQuizContext();
 
     // Function to reset quiz
     const resetQuiz = () => {
         updateTotalQuestionNum(0);
+        updateCurrentQuestionNum(1);
         updateQuizStatus('start');
         updateScore(0);
     }
