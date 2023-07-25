@@ -1,5 +1,5 @@
 import { useQuizContext } from '../context';
-import Normals from '../assets/Normals player.jpeg';
+import Normals from '../assets/Normals.jpeg';
 import Iron from '../assets/Iron.png';
 import Bronze from '../assets/Bronze.png';
 import Silver from '../assets/Silver.png';
