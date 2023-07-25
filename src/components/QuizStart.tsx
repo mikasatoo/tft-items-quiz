@@ -1,8 +1,18 @@
 import { useQuizContext } from '../context';
+import { toast } from 'react-hot-toast';
 
 export const QuizStart = () => {
     // Access functions from the QuizContext
-    const { updateTotalQuestionNum, updateQuizStatus } = useQuizContext();
+    const { totalQuestionNum, updateTotalQuestionNum, updateQuizStatus } = useQuizContext();
+
+    // Function to check if user has selected the number of questions
+    const handlePlay = () => {
+        if (totalQuestionNum === 5 || totalQuestionNum === 10 ) {
+            updateQuizStatus('play');
+        } else {
+            toast.error('You need to select the number of questions first!');
+        }
+    }
 
     // Render the QuizStart view
     return (
@@ -26,8 +36,7 @@ export const QuizStart = () => {
             <div className='play-btn-div'>
                 <button
                     className='play-btn'
-                    // *** Want to only be able to click this if totalQuestionNum is 5 or 10
-                    onClick={() => updateQuizStatus('play')}
+                    onClick={() => handlePlay()}
                 >
                     Play
                 </button>
