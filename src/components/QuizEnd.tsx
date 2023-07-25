@@ -1,4 +1,18 @@
 import { useQuizContext } from '../context';
+import Normals from '../assets/Normals player.jpeg';
+import Iron from '../assets/Iron.png';
+import Bronze from '../assets/Bronze.png';
+import Silver from '../assets/Silver.png';
+import Gold from '../assets/Gold.png';
+
+// Object with image source references (corresponding to each rank)
+const images = {
+    "Normals player": Normals,
+    Iron,
+    Bronze,
+    Silver,
+    Gold
+}
 
 export const QuizEnd = () => {
     // Access variables and functions from the QuizContext
@@ -11,7 +25,7 @@ export const QuizEnd = () => {
         updateQuizStatus('start');
         updateScore(0);
     }
-
+    
     // Render the QuizEnd view
     return (
         <div className='end-view'>
@@ -20,8 +34,8 @@ export const QuizEnd = () => {
                 <h3>{score} out of {totalQuestionNum}</h3>
             </div>
             <div className='rank'>
-                {rank}
-                {/* Also want to show the rank image */}
+                <div className='rank-text'>{rank}</div>
+                <img className='rank-img' src={ images[rank] }></img>
             </div>
             <div className='retry-btn-div'>
                 <button
