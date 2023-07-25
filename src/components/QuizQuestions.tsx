@@ -140,7 +140,7 @@ export const QuizQuestions = () => {
         items[randomItemIndex].used = true;
 
         // 3. Set the question content based on the question type
-            // *** also want to set image links for these and render them
+        // *** also want to set image links for these and render them
         if (questionType === 'chooseCombinedItem') {
             setQuestionContent(`${subject.baseItem1} + ${subject.baseItem2}`);
         } else if (questionType === 'chooseBaseItems' || randomQuestion.type === 'chooseAbility') {
@@ -174,39 +174,47 @@ export const QuizQuestions = () => {
 
         // loop through possibleOptions array to get the other three random options
         for (let i = 1; i <= 3; i++) {
-            const newOptionIndex = Math.floor(Math.random() * possibleOptions.length);
-            const newOption = possibleOptions[newOptionIndex];
+            const randomOptionIndex = Math.floor(Math.random() * possibleOptions.length);
+            const newOption = possibleOptions[randomOptionIndex];
             options.push(newOption);
-            possibleOptions.splice(newOptionIndex, 1);  // remove the used option from possibleOptions
+            possibleOptions.splice(randomOptionIndex, 1);  // remove the used option from possibleOptions
         }
         
-        // *** shuffle the options array (set up a separate shuffle() function) and then setShuffledOptions()
-
-
-        console.log(questionType);
-        console.log(subject);
-        console.log(itemsNotUsed);
-        console.log(otherItems);
-        console.log(possibleOptions);
-        console.log(options);
+        // shuffle the options array to randomize the order
+        setShuffledOptions(shuffleArray(options));
     }
 
-    // *** Function to handle selecting an answer
-    const handleAnswerSelection = () => {
-        // *** setAnswer
-
+    // Function to shuffle the elements of an array randomly
+    function shuffleArray(array: string[]) {
+        const shuffledArray = [...array];
+        for (let i = shuffledArray.length - 1; i > 0; i--) {
+            const randomIndex = Math.floor(Math.random() * (i + 1));
+            [shuffledArray[i], shuffledArray[randomIndex]] = [shuffledArray[randomIndex], shuffledArray[i]];
+        }
+        return shuffledArray;
     }
 
-    // *** Function to handle submitting an answer
+    // Function to handle selecting an answer (before submitting)
+    const handleAnswerSelection = (option: string) => {
+        if (result === '') {
+            setAnswer(option);
+        }
+    }
+
+    // Function to handle submitting an answer
     const handleSubmit = () => {
-        console.log('You submitted!');
-        // *** setResult: 'Correct ...' if answer === correctOption, or 'Incorrect ...'
-        // *** updateScore: score + 1 if answer === correctOption, or don't change
-
+        if (answer === correctOption) {
+            setResult(`Correct! You selected: ${correctOption}`);
+            updateScore(score + 1);
+        } else {
+            setResult(`Incorrect! The correct answer is: ${correctOption}`);
+        }
     }
 
     // Function to handle next question
     const handleNext = () => {
+        setAnswer('');
+        setResult('');
         updateCurrentQuestionNum(currentQuestionNum + 1);
 
         // If end of quiz is reached, update rank and quiz status (move to QuizEnd view)
@@ -241,14 +249,57 @@ export const QuizQuestions = () => {
                     </div>
                 </div>
 
-                {/* *** Iterate through options array to render option buttons (onClick => handleAnswerSelection()) */}
-                <div className='options'>
-                    <div className='option-1'>
-                        {items[0].baseItem1}
-                        {items[0].baseItem2}
+                {result === '' ? (
+                    <div className='options'>
+                        <button
+                                className='option-1-btn'
+                                onClick={() => handleAnswerSelection(shuffledOptions[0])}
+                            >
+                                {shuffledOptions[0]}
+                        </button>
+                        <button
+                                className='option-2-btn'
+                                onClick={() => handleAnswerSelection(shuffledOptions[1])}
+                            >
+                                {shuffledOptions[1]}
+                        </button>
+                        <button
+                                className='option-3-btn'
+                                onClick={() => handleAnswerSelection(shuffledOptions[2])}
+                            >
+                                {shuffledOptions[2]}
+                        </button>
+                        <button
+                                className='option-4-btn'
+                                onClick={() => handleAnswerSelection(shuffledOptions[3])}
+                            >
+                                {shuffledOptions[3]}
+                        </button>
                     </div>
-                    <div className='option-2'>Option 2</div>
-                </div>
+                ) : (
+                    <div className='options inactive'>
+                        <button
+                                className='option-1-btn'
+                            >
+                                {shuffledOptions[0]}
+                        </button>
+                        <button
+                                className='option-2-btn'
+                            >
+                                {shuffledOptions[1]}
+                        </button>
+                        <button
+                                className='option-3-btn'
+                            >
+                                {shuffledOptions[2]}
+                        </button>
+                        <button
+                                className='option-4-btn'
+                            >
+                                {shuffledOptions[3]}
+                        </button>
+                    </div>
+                )}
             </div>
 
             {answer !== '' ? (
