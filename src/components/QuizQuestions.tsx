@@ -1,5 +1,6 @@
 import { useEffect, useState } from 'react';
 import { useQuizContext } from '../context';
+import { toast } from 'react-hot-toast';
 
 // Define type for Question objects
 type Question = {
@@ -205,7 +206,6 @@ export const QuizQuestions = () => {
     const handleSubmit = () => {
         if (answer === correctOption) {
             setResult(`Correct! You selected: ${correctOption}`);
-            updateScore(score + 1);
         } else {
             setResult(`Incorrect! The correct answer is: ${correctOption}`);
         }
@@ -215,11 +215,18 @@ export const QuizQuestions = () => {
     const handleNext = () => {
         setAnswer('');
         setResult('');
+
+        let updatedScore = score;
+        if (result.includes('Correct!')) {
+            updatedScore = score + 1;
+            updateScore(updatedScore);
+        }
+
         updateCurrentQuestionNum(currentQuestionNum + 1);
 
         // If end of quiz is reached, update rank and quiz status (move to QuizEnd view)
         if (currentQuestionNum === totalQuestionNum) {
-            updateRank(score, totalQuestionNum);
+            updateRank(updatedScore, totalQuestionNum);
             updateQuizStatus('end');
         }
     }
@@ -234,9 +241,8 @@ export const QuizQuestions = () => {
     return (
         <div className='question-view'>
             <div className='progress-bar'>
+                {currentQuestionNum} of {totalQuestionNum}
                 {/* *** Add progress bar JSX / code */}
-                Progress bar
-
             </div>
 
             <div className='question-options-div'>
@@ -249,64 +255,49 @@ export const QuizQuestions = () => {
                     </div>
                 </div>
 
-                {result === '' ? (
-                    <div className='options'>
-                        <button
-                                className='option-1-btn'
-                                onClick={() => handleAnswerSelection(shuffledOptions[0])}
-                            >
-                                {shuffledOptions[0]}
-                        </button>
-                        <button
-                                className='option-2-btn'
-                                onClick={() => handleAnswerSelection(shuffledOptions[1])}
-                            >
-                                {shuffledOptions[1]}
-                        </button>
-                        <button
-                                className='option-3-btn'
-                                onClick={() => handleAnswerSelection(shuffledOptions[2])}
-                            >
-                                {shuffledOptions[2]}
-                        </button>
-                        <button
-                                className='option-4-btn'
-                                onClick={() => handleAnswerSelection(shuffledOptions[3])}
-                            >
-                                {shuffledOptions[3]}
-                        </button>
-                    </div>
-                ) : (
-                    <div className='options inactive'>
-                        <button
-                                className='option-1-btn'
-                            >
-                                {shuffledOptions[0]}
-                        </button>
-                        <button
-                                className='option-2-btn'
-                            >
-                                {shuffledOptions[1]}
-                        </button>
-                        <button
-                                className='option-3-btn'
-                            >
-                                {shuffledOptions[2]}
-                        </button>
-                        <button
-                                className='option-4-btn'
-                            >
-                                {shuffledOptions[3]}
-                        </button>
-                    </div>
-                )}
+                <div className={result === '' ? 'options' : 'options inactive'}>
+                    <button
+                            className='option-1-btn'
+                            onClick={() => 
+                                (result === '' ? handleAnswerSelection(shuffledOptions[0]) : toast.error("You have already submitted your answer!"))
+                            }
+                        >
+                            a. {shuffledOptions[0]}
+                    </button>
+                    <button
+                            className='option-2-btn'
+                            onClick={() => 
+                                (result === '' ? handleAnswerSelection(shuffledOptions[1]) : toast.error("You have already submitted your answer!"))
+                            }
+                        >
+                            b. {shuffledOptions[1]}
+                    </button>
+                    <button
+                            className='option-3-btn'
+                            onClick={() => 
+                                (result === '' ? handleAnswerSelection(shuffledOptions[2]) : toast.error("You have already submitted your answer!"))
+                            }
+                        >
+                            c. {shuffledOptions[2]}
+                    </button>
+                    <button
+                            className='option-4-btn'
+                            onClick={() => 
+                                (result === '' ? handleAnswerSelection(shuffledOptions[3]) : toast.error("You have already submitted your answer!"))
+                            }
+                        >
+                            d. {shuffledOptions[3]}
+                    </button>
+                </div>
             </div>
 
             {answer !== '' ? (
-                <div className='submit-btn-div'>
+                <div className={result === '' ? 'submit-btn-div' : 'submit-btn-div inactive'}>
                     <button
                         className='submit-btn'
-                        onClick={() => handleSubmit()}
+                        onClick={() => 
+                            (result === '' ? handleSubmit() : toast.error("You have already submitted your answer!"))
+                        }
                     >
                         Submit
                     </button>

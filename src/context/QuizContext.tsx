@@ -51,13 +51,13 @@ export const QuizProvider = (props: { children: React.ReactNode }) => {
         if (0 <= scorePercentage && scorePercentage <= 0.2) {
             setRank('Normals player');
         } else if (0.3 <= scorePercentage && scorePercentage <= 0.4) {
-            setRank('Platinum');
+            setRank('Iron');
         } else if (0.5 <= scorePercentage && scorePercentage <= 0.6) {
-            setRank('Diamond');
+            setRank('Bronze');
         } else if (0.7 <= scorePercentage && scorePercentage <= 0.8) {
-            setRank('Master');
+            setRank('Silver');
         } else if (0.9 <= scorePercentage && scorePercentage <= 1) {
-            setRank('Grandmaster? Challenger?');
+            setRank('Gold');
         }
     }
     
