@@ -17,7 +17,7 @@ const images = {
 export const QuizEnd = () => {
     // Access variables and functions from the QuizContext
     const { totalQuestionNum, updateTotalQuestionNum, updateCurrentQuestionNum, updateQuizStatus, score, updateScore, rank } = useQuizContext();
-
+    
     // Function to reset quiz
     const resetQuiz = () => {
         updateTotalQuestionNum(0);

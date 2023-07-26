@@ -26,7 +26,7 @@ import IoniaEmblem from '../assets/IoniaEmblem.png';
 import IonicSpark from '../assets/IonicSpark.png';
 import JeweledGauntlet from '../assets/JeweledGauntlet.png';
 import JuggernautEmblem from '../assets/JuggernautEmblem.png';
-import LastWhispher from '../assets/LastWhispher.png';
+import LastWhisper from '../assets/LastWhisper.png';
 import LocketoftheIronSolari from '../assets/LocketoftheIronSolari.png';
 import Morellonomicon from '../assets/Morellonomicon.png';
 import NeedlesslyLargeRod from '../assets/NeedlesslyLargeRod.png';
@@ -47,8 +47,8 @@ import SparringGloves from '../assets/SparringGloves.png';
 import Spatula from '../assets/Spatula.png';
 import SpearofShojin from '../assets/SpearofShojin.png';
 import StatikkShiv from '../assets/StatikkShiv.png';
-import SunfireCap from '../assets/SunfireCap.png';
-import TacticansCrown from '../assets/TacticansCrown.png';
+import SunfireCape from '../assets/SunfireCape.png';
+import TacticansCrown from '../assets/TacticiansCrown.png';
 import TearoftheGoddess from '../assets/TearoftheGoddess.png';
 import ThiefsGloves from '../assets/ThiefsGloves.png';
 import TitansResolve from '../assets/TitansResolve.png';
@@ -72,7 +72,7 @@ type Item = {
     used: boolean
 }
 
-// Create a BaseItems enum to hold the base items
+// Create a BaseItems enum to hold the full names of the base items
 enum BaseItems {
     Spatula = "Spatula",
     Tear = "Tear of the Goddess",
@@ -82,7 +82,65 @@ enum BaseItems {
     Vest = "Chain Vest",
     Bow = "Recurve Bow",
     Belt = "Giant's Belt",
-    Gloves = "Sparring Gloves"
+    Gloves = "Sparring Gloves",
+}
+
+// Object with image source references
+const itemImages = {
+    "Archangel's Staff": ArchangelsStaff,
+    "B.F. Sword": BFSword,
+    "Bloodthirster": Bloodthirster,
+    "Blue Buff": BlueBuff,
+    "Bramble Vest": BrambleVest,
+    "Chain Vest": ChainVest,
+    "Chalice of Power": ChaliceofPower,
+    "Challenger Emblem": ChallengerEmblem,
+    "Deathblade": Deathblade,
+    "Demacia Emblem": DemaciaEmblem,
+    "Dragon's Claw": DragonsClaw,
+    "Edge of Night": EdgeofNight,
+    "Gargoyle Stoneplate": GargoyleStoneplate,
+    "Giant's Belt": GiantsBelt,
+    "Giant Slayer": GiantSlayer,
+    "Guardbreaker": Guardbreaker,
+    "Guinsoo's Rageblade": GuinsoosRageblade,
+    "Hand of Justice": HandofJustice,
+    "Hextech Gunblade": HextechGunblade,
+    "Infinity Edge": InfinityEdge,
+    "Ionia Emblem": IoniaEmblem,
+    "Ionic Spark": IonicSpark,
+    "Jeweled Gauntlet": JeweledGauntlet,
+    "Juggernaut Emblem": JuggernautEmblem,
+    "Last Whisper": LastWhisper,
+    "Locket of the Iron Solari": LocketoftheIronSolari,
+    "Morellonomicon": Morellonomicon,
+    "Needlessly Large Rod": NeedlesslyLargeRod,
+    "Negatron Cloak": NegatronCloak,
+    "Noxus Emblem": NoxusEmblem,
+    "Protector's Vow": ProtectorsVow,
+    "Quicksilver": Quicksilver,
+    "Rabadon's Deathcap": RabadonsDeathcap,
+    "Rapid Firecannon": RapidFirecannon,
+    "Recurve Bow": RecurveBow,
+    "Redemption": Redemption,
+    "Runaan's Hurricane": RunaansHurricane,
+    "Shroud of Stillness": ShroudofStillness,
+    "Shurima Emblem": ShurimaEmblem,
+    "Slayer Emblem": SlayerEmblem,
+    "Sorceror Emblem": SorcererEmblem,
+    "Sparring Gloves": SparringGloves,
+    "Spatula": Spatula,
+    "Spear of Shojin": SpearofShojin,
+    "Statikk Shiv": StatikkShiv,
+    "Sunfire Cape": SunfireCape,
+    "Tactician's Crown": TacticansCrown,
+    "Tear of the Goddess": TearoftheGoddess,
+    "Thief's Gloves": ThiefsGloves,
+    "Titan's Resolve": TitansResolve,
+    "Warmog's Armor": WarmogsArmor,
+    "Zeke's Herald": ZekesHerald,
+    "Zephyr": Zephyr,
+    "Zz'Rot Portal": ZzRotPortal,
 }
 
 // Define questions array
@@ -139,7 +197,7 @@ const items: Item[] = [
         name: "Noxus Emblem",
         baseItem1: BaseItems.Spatula,
         baseItem2: BaseItems.Belt,
-        ability: "The holder gains the Challenger trait.",
+        ability: "The holder gains the Noxus trait.",
         used: false,
     },
     {
@@ -249,8 +307,8 @@ const items: Item[] = [
     },
     {
         name: "Hand of Justice",
-        baseItem1: BaseItems.Sword,
-        baseItem2: BaseItems.Bow,
+        baseItem1: BaseItems.Tear,
+        baseItem2: BaseItems.Gloves,
         ability: "Grant 2 effects: • 15% Attack Damage and 15 Ability Power. • 15% Omnivamp. Each round, randomly double 1 of these effects.",
         used: false,
     },
@@ -321,7 +379,7 @@ const items: Item[] = [
         name: "Rabadon's Deathcap",
         baseItem1: BaseItems.Rod,
         baseItem2: BaseItems.Rod,
-        ability: "Grants 50 bonus Ability Power",
+        ability: "Grants 50 bonus Ability Power.",
         used: false,
     },
     {
@@ -436,6 +494,17 @@ export const QuizQuestions = () => {
     const [answer, setAnswer] = useState<string>('');
     const [result, setResult] = useState<string>('');
 
+    const [questionContentImg1, setQuestionContentImg1] = useState('');
+    const [questionContentImg2, setQuestionContentImg2] = useState('');
+    const [option1Img1, setOption1Img1] = useState('');
+    const [option1Img2, setOption1Img2] = useState('');
+    const [option2Img1, setOption2Img1] = useState('');
+    const [option2Img2, setOption2Img2] = useState('');
+    const [option3Img1, setOption3Img1] = useState('');
+    const [option3Img2, setOption3Img2] = useState('');
+    const [option4Img1, setOption4Img1] = useState('');
+    const [option4Img2, setOption4Img2] = useState('');
+
     // Function to handle creating each question
     const handleQuestion = () => {
         // 1. Choose a random question type
@@ -450,15 +519,21 @@ export const QuizQuestions = () => {
         const randomItemIndex = Math.floor(Math.random() * itemsNotUsed.length);
         const subject = itemsNotUsed[randomItemIndex]
         items[randomItemIndex].used = true;
+        console.log(subject.name);  // !!! to check the subject isn't being repeated
 
-        // 3. Set the question content based on the question type
-        // *** also want to set image links for these and render them
+        // 3. Set the question content (including image/s) based on the question type
         if (questionType === 'chooseCombinedItem') {
             setQuestionContent(`${subject.baseItem1} + ${subject.baseItem2}`);
+            setQuestionContentImg1(itemImages[subject.baseItem1]);
+            setQuestionContentImg2(itemImages[subject.baseItem2]);
         } else if (questionType === 'chooseBaseItems' || randomQuestion.type === 'chooseAbility') {
             setQuestionContent(subject.name);
+            setQuestionContentImg1(itemImages[subject.name]);
+            setQuestionContentImg2('');
         } else if (questionType === 'chooseItemFromAbility') {
             setQuestionContent(subject.ability);
+            setQuestionContentImg1('');
+            setQuestionContentImg2('');
         }
 
         // 4. Set the four options (including the correct option) based on the question type
@@ -493,7 +568,54 @@ export const QuizQuestions = () => {
         }
         
         // shuffle the options array to randomize the order
-        setShuffledOptions(shuffleArray(options));
+        const newShuffledArray = shuffleArray(options);
+        setShuffledOptions(newShuffledArray);
+
+        // *** set image/s for each option based on the question type
+        if (questionType === 'chooseCombinedItem' || questionType === 'chooseItemFromAbility') {
+            const option1 = newShuffledArray[0];
+            const option2 = newShuffledArray[1];
+            const option3 = newShuffledArray[2];
+            const option4 = newShuffledArray[3];
+            setOption1Img1(itemImages[option1]);
+            setOption1Img2('');
+            setOption2Img1(itemImages[option2]);
+            setOption2Img2('');
+            setOption3Img1(itemImages[option3]);
+            setOption3Img2('');
+            setOption4Img1(itemImages[option4]);
+            setOption4Img2('');
+        } else if (questionType === 'chooseBaseItems') {
+            const option1Array = newShuffledArray[0].split(' + ');
+            const option1Part1 = option1Array[0];
+            const option1Part2 = option1Array[option1Array.length - 1];
+            const option2Array = newShuffledArray[1].split(' + ');
+            const option2Part1 = option2Array[0];
+            const option2Part2 = option2Array[option2Array.length - 1];
+            const option3Array = newShuffledArray[2].split(' + ');
+            const option3Part1 = option3Array[0];
+            const option3Part2 = option3Array[option3Array.length - 1];
+            const option4Array = newShuffledArray[3].split(' + ');
+            const option4Part1 = option4Array[0];
+            const option4Part2 = option4Array[option4Array.length - 1];
+            setOption1Img1(itemImages[option1Part1]);
+            setOption1Img2(itemImages[option1Part2]);
+            setOption2Img1(itemImages[option2Part1]);
+            setOption2Img2(itemImages[option2Part2]);
+            setOption3Img1(itemImages[option3Part1]);
+            setOption3Img2(itemImages[option3Part2]);
+            setOption4Img1(itemImages[option4Part1]);
+            setOption4Img2(itemImages[option4Part2]);
+        } else if (questionType === 'chooseAbility') {
+            setOption1Img1('');
+            setOption1Img2('');
+            setOption2Img1('');
+            setOption2Img2('');
+            setOption3Img1('');
+            setOption3Img2('');
+            setOption4Img1('');
+            setOption4Img2('');
+        }
     }
 
     // Function to shuffle the elements of an array randomly
@@ -563,6 +685,12 @@ export const QuizQuestions = () => {
                     </div>
                     <div className='question-content'>
                         {questionContent}
+                        {questionContentImg1 !== '' ? (
+                            <div className='question-content-images'>
+                                <img src={questionContentImg1}></img>
+                                {questionContentImg2 !== '' ? <img src={questionContentImg2}></img> : ''}
+                            </div>
+                        ) : ('')}
                     </div>
                 </div>
 
@@ -574,6 +702,12 @@ export const QuizQuestions = () => {
                             }
                         >
                             a. {shuffledOptions[0]}
+                            {option1Img1 !== '' ? (
+                            <div className='option-1-images'>
+                                <img src={option1Img1}></img>
+                                {option1Img2 !== '' ? <img src={option1Img2}></img> : ''}
+                            </div>
+                            ) : ('')}
                     </button>
                     <button
                             className='option-2-btn'
@@ -582,6 +716,13 @@ export const QuizQuestions = () => {
                             }
                         >
                             b. {shuffledOptions[1]}
+                            {option2Img1 !== '' ? (
+                            <div className='option-2-images'>
+                                <img src={option2Img1}></img>
+                                {option2Img2 !== '' ? <img src={option2Img2}></img> : ''}
+                            </div>
+                            ) : ('')}
+                            
                     </button>
                     <button
                             className='option-3-btn'
@@ -590,6 +731,12 @@ export const QuizQuestions = () => {
                             }
                         >
                             c. {shuffledOptions[2]}
+                            {option3Img1 !== '' ? (
+                            <div className='option-3-images'>
+                                <img src={option3Img1}></img>
+                                {option3Img2 !== '' ? <img src={option3Img2}></img> : ''}
+                            </div>
+                            ) : ('')}
                     </button>
                     <button
                             className='option-4-btn'
@@ -598,6 +745,12 @@ export const QuizQuestions = () => {
                             }
                         >
                             d. {shuffledOptions[3]}
+                            {option4Img1 !== '' ? (
+                            <div className='option-4-images'>
+                                <img src={option4Img1}></img>
+                                {option4Img2 !== '' ? <img src={option4Img2}></img> : ''}
+                            </div>
+                            ) : ('')}
                     </button>
                 </div>
             </div>
