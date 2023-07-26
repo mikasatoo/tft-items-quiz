@@ -128,7 +128,7 @@ const itemImages = {
     "Shroud of Stillness": ShroudofStillness,
     "Shurima Emblem": ShurimaEmblem,
     "Slayer Emblem": SlayerEmblem,
-    "Sorceror Emblem": SorcererEmblem,
+    "Sorcerer Emblem": SorcererEmblem,
     "Sparring Gloves": SparringGloves,
     "Spatula": Spatula,
     "Spear of Shojin": SpearofShojin,
@@ -508,7 +508,6 @@ export const QuizQuestions = () => {
 
     // Component to render the progress bar
     const QuizProgressBar = () => {
-        // *** Should it show progress up to or including current question??
         const progress = ((currentQuestionNum - 1) / totalQuestionNum) * 100;
         return <ProgressBar completed={progress} />
     }
@@ -525,9 +524,9 @@ export const QuizQuestions = () => {
             return item.used === false;
         });
         const randomItemIndex = Math.floor(Math.random() * itemsNotUsed.length);
-        const subject = itemsNotUsed[randomItemIndex]
-        items[randomItemIndex].used = true;
-        console.log(subject.name);  // !!! to check the subject isn't being repeated
+        const subject = itemsNotUsed[randomItemIndex];
+        const itemsArrayIndex = items.findIndex(item => item.name === subject.name);
+        items[itemsArrayIndex].used = true;
 
         // 3. Set the question content (including image/s) based on the question type
         if (questionType === 'chooseCombinedItem') {
@@ -684,7 +683,7 @@ export const QuizQuestions = () => {
                 {currentQuestionNum} of {totalQuestionNum}
                 <QuizProgressBar />
             </div>
-            
+
             <div className='question-options-div'>
                 <div className='question'>
                     <div className='question-text'>
