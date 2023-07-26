@@ -1,6 +1,7 @@
 import { useEffect, useState } from 'react';
 import { useQuizContext } from '../context';
 import { toast } from 'react-hot-toast';
+import ProgressBar from '@ramonak/react-progress-bar';
 
 import ArchangelsStaff from '../assets/ArchangelsStaff.png';
 import BFSword from '../assets/BFSword.png';
@@ -505,8 +506,15 @@ export const QuizQuestions = () => {
     const [option4Img1, setOption4Img1] = useState('');
     const [option4Img2, setOption4Img2] = useState('');
 
-    // Function to handle creating each question
-    const handleQuestion = () => {
+    // Component to render the progress bar
+    const QuizProgressBar = () => {
+        // *** Should it show progress up to or including current question??
+        const progress = ((currentQuestionNum - 1) / totalQuestionNum) * 100;
+        return <ProgressBar completed={progress} />
+    }
+
+    // Function to create each question
+    const createQuestion = () => {
         // 1. Choose a random question type
         const randomQuestion = questions[Math.floor(Math.random() * questions.length)];
         const questionType = randomQuestion.type;
@@ -544,7 +552,6 @@ export const QuizQuestions = () => {
         const options: string[] = [];
         let possibleOptions: string[] = [];
         
-        // *** also want to set image links for these and render them
         if (questionType === 'chooseCombinedItem' || questionType === 'chooseItemFromAbility') {
             setCorrectOption(subject.name);
             options.push(subject.name);
@@ -571,7 +578,7 @@ export const QuizQuestions = () => {
         const newShuffledArray = shuffleArray(options);
         setShuffledOptions(newShuffledArray);
 
-        // *** set image/s for each option based on the question type
+        // set image/s for each option based on the question type
         if (questionType === 'chooseCombinedItem' || questionType === 'chooseItemFromAbility') {
             const option1 = newShuffledArray[0];
             const option2 = newShuffledArray[1];
@@ -666,7 +673,7 @@ export const QuizQuestions = () => {
 
     // *** Run handleQuestion() once on first render and when currentQuestionNum changes??
     useEffect(() => {
-        handleQuestion();
+        createQuestion();
         console.log('sup');
     }, []);
 
@@ -675,9 +682,9 @@ export const QuizQuestions = () => {
         <div className='question-view'>
             <div className='progress-bar'>
                 {currentQuestionNum} of {totalQuestionNum}
-                {/* *** Add progress bar JSX / code */}
+                <QuizProgressBar />
             </div>
-
+            
             <div className='question-options-div'>
                 <div className='question'>
                     <div className='question-text'>
