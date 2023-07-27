@@ -521,7 +521,11 @@ export const QuizQuestions = () => {
 
         // 2. Choose a random item (subject) from the items not yet used
         const itemsNotUsed = items.filter(item => {
-            return item.used === false;
+            if (questionType === 'chooseItemFromAbility' || randomQuestion.type === 'chooseAbility') {
+                return (!item.used && !item.name.includes('Emblem'));   // too easy if question is "Which item provides the challenger trait?"
+            } else {
+                return !item.used;
+            }
         });
         const randomItemIndex = Math.floor(Math.random() * itemsNotUsed.length);
         const subject = itemsNotUsed[randomItemIndex];
@@ -544,11 +548,15 @@ export const QuizQuestions = () => {
         }
 
         // 4. Set the four options (including the correct option) based on the question type
-        // take options from any item other than the question's subject
-        // *** add a condition where if the subject is an emblem, all the options should be emblems and maybe all if it isn't an emblem, all the options should NOT be emblems (probs separate emblems into their own array)
+        // take options from any item other than the question's subject (that is also an emblem if the subject is an emblem)
         const otherItems = items.filter(item => {
-            return item.name !== subject.name;
+            if (subject.name.includes('Emblem')) {
+                return (item.name !== subject.name && item.name.includes('Emblem'));
+            } else {
+                return (item.name !== subject.name && !item.name.includes('Emblem'));
+            }
         });
+        
         const options: string[] = [];
         let possibleOptions: string[] = [];
         
