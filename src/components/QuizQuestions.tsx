@@ -545,6 +545,7 @@ export const QuizQuestions = () => {
 
         // 4. Set the four options (including the correct option) based on the question type
         // take options from any item other than the question's subject
+        // *** add a condition where if the subject is an emblem, all the options should be emblems and maybe all if it isn't an emblem, all the options should NOT be emblems (probs separate emblems into their own array)
         const otherItems = items.filter(item => {
             return item.name !== subject.name;
         });
@@ -676,6 +677,17 @@ export const QuizQuestions = () => {
         console.log('sup');
     }, []);
 
+    // Function to get the class name for each option button (based on if it is the correct option or incorrect but has been selected)
+    function getOptionClassName(optionNum: number, optionValue: string) {
+        if (optionValue === correctOption) {
+            return `option-${optionNum}-btn correct-option`;
+        } else if (optionValue === answer) {
+            return `option-${optionNum}-btn incorrect-option`;
+        } else {
+            return `option-${optionNum}-btn`;
+        }
+    }
+
     // Render the QuizQuestions view
     return (
         <div className='question-view'>
@@ -700,63 +712,63 @@ export const QuizQuestions = () => {
                     </div>
                 </div>
 
-                <div className={result === '' ? 'options' : 'options inactive'}>
+                <div className={result === '' ? 'options' : 'options-inactive'}>
                     <button
-                            className='option-1-btn'
-                            onClick={() => 
-                                (result === '' ? handleAnswerSelection(shuffledOptions[0]) : toast.error("You have already submitted your answer!"))
-                            }
-                        >
-                            a. {shuffledOptions[0]}
-                            {option1Img1 !== '' ? (
-                            <div className='option-1-images'>
-                                <img src={option1Img1}></img>
-                                {option1Img2 !== '' ? <img src={option1Img2}></img> : ''}
-                            </div>
-                            ) : ('')}
+                        className={getOptionClassName(1, shuffledOptions[0])}
+                        onClick={() => 
+                            (result === '' ? handleAnswerSelection(shuffledOptions[0]) : toast.error("You have already submitted your answer!"))
+                        }
+                    >
+                        a. {shuffledOptions[0]}
+                        {option1Img1 !== '' ? (
+                        <div className='option-1-images'>
+                            <img src={option1Img1}></img>
+                            {option1Img2 !== '' ? <img src={option1Img2}></img> : ''}
+                        </div>
+                        ) : ('')}
                     </button>
                     <button
-                            className='option-2-btn'
-                            onClick={() => 
-                                (result === '' ? handleAnswerSelection(shuffledOptions[1]) : toast.error("You have already submitted your answer!"))
-                            }
-                        >
-                            b. {shuffledOptions[1]}
-                            {option2Img1 !== '' ? (
-                            <div className='option-2-images'>
-                                <img src={option2Img1}></img>
-                                {option2Img2 !== '' ? <img src={option2Img2}></img> : ''}
-                            </div>
-                            ) : ('')}
-                            
+                        className={getOptionClassName(2, shuffledOptions[1])}
+                        onClick={() => 
+                            (result === '' ? handleAnswerSelection(shuffledOptions[1]) : toast.error("You have already submitted your answer!"))
+                        }
+                    >
+                        b. {shuffledOptions[1]}
+                        {option2Img1 !== '' ? (
+                        <div className='option-2-images'>
+                            <img src={option2Img1}></img>
+                            {option2Img2 !== '' ? <img src={option2Img2}></img> : ''}
+                        </div>
+                        ) : ('')}
+                    
                     </button>
                     <button
-                            className='option-3-btn'
-                            onClick={() => 
-                                (result === '' ? handleAnswerSelection(shuffledOptions[2]) : toast.error("You have already submitted your answer!"))
-                            }
-                        >
-                            c. {shuffledOptions[2]}
-                            {option3Img1 !== '' ? (
-                            <div className='option-3-images'>
-                                <img src={option3Img1}></img>
-                                {option3Img2 !== '' ? <img src={option3Img2}></img> : ''}
-                            </div>
-                            ) : ('')}
+                        className={getOptionClassName(3, shuffledOptions[2])}
+                        onClick={() => 
+                            (result === '' ? handleAnswerSelection(shuffledOptions[2]) : toast.error("You have already submitted your answer!"))
+                        }
+                    >
+                        c. {shuffledOptions[2]}
+                        {option3Img1 !== '' ? (
+                        <div className='option-3-images'>
+                            <img src={option3Img1}></img>
+                            {option3Img2 !== '' ? <img src={option3Img2}></img> : ''}
+                        </div>
+                        ) : ('')}
                     </button>
                     <button
-                            className='option-4-btn'
-                            onClick={() => 
-                                (result === '' ? handleAnswerSelection(shuffledOptions[3]) : toast.error("You have already submitted your answer!"))
-                            }
-                        >
-                            d. {shuffledOptions[3]}
-                            {option4Img1 !== '' ? (
-                            <div className='option-4-images'>
-                                <img src={option4Img1}></img>
-                                {option4Img2 !== '' ? <img src={option4Img2}></img> : ''}
-                            </div>
-                            ) : ('')}
+                        className={getOptionClassName(4, shuffledOptions[3])}
+                        onClick={() => 
+                            (result === '' ? handleAnswerSelection(shuffledOptions[3]) : toast.error("You have already submitted your answer!"))
+                        }
+                    >
+                        d. {shuffledOptions[3]}
+                        {option4Img1 !== '' ? (
+                        <div className='option-4-images'>
+                            <img src={option4Img1}></img>
+                            {option4Img2 !== '' ? <img src={option4Img2}></img> : ''}
+                        </div>
+                        ) : ('')}
                     </button>
                 </div>
             </div>
