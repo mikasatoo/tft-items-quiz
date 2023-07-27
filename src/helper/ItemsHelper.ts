@@ -53,6 +53,8 @@ import ZekesHerald from '../assets/ZekesHerald.png';
 import Zephyr from '../assets/Zephyr.png';
 import ZzRotPortal from '../assets/ZzRotPortal.png';
 
+import { v4 as uuidv4 } from 'uuid';
+
 // Object with image source references
 const itemImages = {
     "Archangel's Staff": ArchangelsStaff,
@@ -118,6 +120,7 @@ type Item = {
     baseItem2: BaseItems
     ability: string
     used: boolean
+    id: string
 }
 
 // Create a BaseItems enum to hold the full names of the base items
@@ -141,6 +144,7 @@ const items: Item[] = [
         baseItem2: BaseItems.Bow,
         ability: "The holder gains the Challenger trait.",
         used: false,
+        id: uuidv4(),
     },
     {
         name: "Demacia Emblem",
@@ -148,6 +152,7 @@ const items: Item[] = [
         baseItem2: BaseItems.Cloak,
         ability: "The holder gains the Demacia trait.",
         used: false,
+        id: uuidv4(),
     },
     {
         name: "Ionia Emblem",
@@ -155,6 +160,7 @@ const items: Item[] = [
         baseItem2: BaseItems.Sword,
         ability: "The holder gains the Ionia trait.",
         used: false,
+        id: uuidv4(),
     },
     {
         name: "Juggernaut Emblem",
@@ -162,6 +168,7 @@ const items: Item[] = [
         baseItem2: BaseItems.Vest,
         ability: "The holder gains the Juggernaut trait.",
         used: false,
+        id: uuidv4(),
     },
     {
         name: "Noxus Emblem",
@@ -169,6 +176,7 @@ const items: Item[] = [
         baseItem2: BaseItems.Belt,
         ability: "The holder gains the Noxus trait.",
         used: false,
+        id: uuidv4(),
     },
     {
         name: "Shurima Emblem",
@@ -176,6 +184,7 @@ const items: Item[] = [
         baseItem2: BaseItems.Rod,
         ability: "The holder gains the Shurima trait.",
         used: false,
+        id: uuidv4(),
     },
     {
         name: "Slayer Emblem",
@@ -183,6 +192,7 @@ const items: Item[] = [
         baseItem2: BaseItems.Gloves,
         ability: "The holder gains the Slayer trait.",
         used: false,
+        id: uuidv4(),
     },
     {
         name: "Sorcerer Emblem",
@@ -190,6 +200,7 @@ const items: Item[] = [
         baseItem2: BaseItems.Tear,
         ability: "The holder gains the Sorcerer trait.",
         used: false,
+        id: uuidv4(),
     },
     {
         name: "Archangel's Staff",
@@ -197,6 +208,7 @@ const items: Item[] = [
         baseItem2: BaseItems.Tear,
         ability: "Grant 10 bonus Ability Power. Combat start: Grant 20 Ability Power every 5 seconds.",
         used: false,
+        id: uuidv4(),
     },
     {
         name: "Bloodthirster",
@@ -204,6 +216,7 @@ const items: Item[] = [
         baseItem2: BaseItems.Cloak,
         ability: "Grant 20% Omnivamp. Once per combat at 40% Health, gain a 25% maximum Health shield that lasts up to 5 seconds.",
         used: false,
+        id: uuidv4(),
     },
     {
         name: "Blue Buff",
@@ -211,6 +224,7 @@ const items: Item[] = [
         baseItem2: BaseItems.Tear,
         ability: "Grant 10 bonus starting Mana and 10 bonus Ability Power. Abilities cost 10 less Mana to cast. If the holder gets at least 1 takedown within 3 seconds of casting, gain 10 Mana.",
         used: false,
+        id: uuidv4(),
     },
     {
         name: "Bramble Vest",
@@ -218,6 +232,7 @@ const items: Item[] = [
         baseItem2: BaseItems.Vest,
         ability: "Grants 30 bonus Armor. Negates 75% bonus damage from incoming critical strikes. When struck by an attack, deal 75/100/150★ magic damage to all nearby enemies (once every 2 seconds).",
         used: false,
+        id: uuidv4(),
     },
     {
         name: "Chalice of Power",
@@ -225,6 +240,7 @@ const items: Item[] = [
         baseItem2: BaseItems.Tear,
         ability: "Combat start: Grant 20 Ability Power to the holder and allies within 1 hex in the same row.",
         used: false,
+        id: uuidv4(),
     },
     {
         name: "Deathblade",
@@ -232,6 +248,7 @@ const items: Item[] = [
         baseItem2: BaseItems.Sword,
         ability: "Grant 46% bonus Attack Damage.",
         used: false,
+        id: uuidv4(),
     },
     {
         name: "Dragon's Claw",
@@ -239,6 +256,7 @@ const items: Item[] = [
         baseItem2: BaseItems.Cloak,
         ability: "Grants 45 bonus Magic Resist. Every 2 seconds, regenerate 5% maximum Health.",
         used: false,
+        id: uuidv4(),
     },
     {
         name: "Edge of Night",
@@ -246,6 +264,7 @@ const items: Item[] = [
         baseItem2: BaseItems.Vest,
         ability: "Once per combat: At 60% Health, briefly become stealthed, becoming untargetable and shedding negative effects. Then, grant 15% bonus Attack Speed.",
         used: false,
+        id: uuidv4(),
     },
     {
         name: "Gargoyle Stoneplate",
@@ -253,6 +272,7 @@ const items: Item[] = [
         baseItem2: BaseItems.Cloak,
         ability: "Grant 15 Armor and 15 Magic Resist for each enemy targeting the holder.",
         used: false,
+        id: uuidv4(),
     },
     {
         name: "Giant Slayer",
@@ -260,6 +280,7 @@ const items: Item[] = [
         baseItem2: BaseItems.Bow,
         ability: "Grant 20% bonus Attack Damage and 20 bonus Ability Power. Abilities and attacks deal 25% more damage to enemies with more than 1600 maximum Health.",
         used: false,
+        id: uuidv4(),
     },
     {
         name: "Guardbreaker",
@@ -267,6 +288,7 @@ const items: Item[] = [
         baseItem2: BaseItems.Gloves,
         ability: "Grant 20% bonus Attack Damage and 20 bonus Ability Power. After damaging a shielded enemy, Abilities and attacks deal 25% more damage for 3 seconds.",
         used: false,
+        id: uuidv4(),
     },
     {
         name: "Guinsoo's Rageblade",
@@ -274,6 +296,7 @@ const items: Item[] = [
         baseItem2: BaseItems.Bow,
         ability: "Attacks grant 4% bonus Attack Speed. This effect stacks.",
         used: false,
+        id: uuidv4(),
     },
     {
         name: "Hand of Justice",
@@ -281,6 +304,7 @@ const items: Item[] = [
         baseItem2: BaseItems.Gloves,
         ability: "Grant 2 effects: • 15% Attack Damage and 15 Ability Power. • 15% Omnivamp. Each round, randomly double 1 of these effects.",
         used: false,
+        id: uuidv4(),
     },
     {
         name: "Hextech Gunblade",
@@ -288,6 +312,7 @@ const items: Item[] = [
         baseItem2: BaseItems.Rod,
         ability: "Grant 22% Omnivamp, which also heals the lowest percent Health ally.",
         used: false,
+        id: uuidv4(),
     },
     {
         name: "Infinity Edge",
@@ -295,6 +320,7 @@ const items: Item[] = [
         baseItem2: BaseItems.Gloves,
         ability: "Grant 20% bonus Attack Damage and 15% bonus Critical Strike Chance. Damage from an Ability can critically strike.",
         used: false,
+        id: uuidv4(),
     },
     {
         name: "Ionic Spark",
@@ -302,6 +328,7 @@ const items: Item[] = [
         baseItem2: BaseItems.Cloak,
         ability: "50% Shred enemies within 2 hexes. When enemies cast an Ability, they are also zapped for magic damage equal to 160% of their maximum Mana.",
         used: false,
+        id: uuidv4(),
     },
     {
         name: "Jeweled Gauntlet",
@@ -309,6 +336,7 @@ const items: Item[] = [
         baseItem2: BaseItems.Gloves,
         ability: "Grant 15 bonus Ability Power and 15% Critical Strike Chance. Damage from an Ability can critically strike.",
         used: false,
+        id: uuidv4(),
     },
     {
         name: "Last Whisper",
@@ -316,6 +344,7 @@ const items: Item[] = [
         baseItem2: BaseItems.Gloves,
         ability: "Grant 10% bonus Attack Damage. Any physical damage dealt 50% Sunders the target for 3 seconds. This effect does not stack.",
         used: false,
+        id: uuidv4(),
     },
     {
         name: "Locket of the Iron Solari",
@@ -323,6 +352,7 @@ const items: Item[] = [
         baseItem2: BaseItems.Rod,
         ability: "Combat start: Shield the holder and allies within 1 hex in the same row for 250/300/350★ damage for 8 seconds.",
         used: false,
+        id: uuidv4(),
     },
     {
         name: "Morellonomicon",
@@ -330,6 +360,7 @@ const items: Item[] = [
         baseItem2: BaseItems.Rod,
         ability: "Grants 15 bonus Ability Power. Magic or true damage from the holder's Ability 10% Burns and 33% Wounds enemies for the 10 seconds.",
         used: false,
+        id: uuidv4(),
     },
     {
         name: "Protector's Vow",
@@ -337,6 +368,7 @@ const items: Item[] = [
         baseItem2: BaseItems.Tear,
         ability: "Grant 30 bonus starting Mana. Once per combat: At 40% Health, gain a 25% maximum Health shield that lasts up to 5 seconds and 25 Armor and Magic Resist for the rest of combat.",
         used: false,
+        id: uuidv4(),
     },
     {
         name: "Quicksilver",
@@ -344,6 +376,7 @@ const items: Item[] = [
         baseItem2: BaseItems.Gloves,
         ability: "Combat start: Grant immunity to crowd control for 18 seconds.",
         used: false,
+        id: uuidv4(),
     },
     {
         name: "Rabadon's Deathcap",
@@ -351,6 +384,7 @@ const items: Item[] = [
         baseItem2: BaseItems.Rod,
         ability: "Grants 50 bonus Ability Power.",
         used: false,
+        id: uuidv4(),
     },
     {
         name: "Rapid Firecannon",
@@ -358,6 +392,7 @@ const items: Item[] = [
         baseItem2: BaseItems.Bow,
         ability: "Grant 30% bonus Attack Speed and 1 bonus Attack Range. Attacks cannot miss.",
         used: false,
+        id: uuidv4(),
     },
     {
         name: "Redemption",
@@ -365,6 +400,7 @@ const items: Item[] = [
         baseItem2: BaseItems.Tear,
         ability: "Heal allies within 1 hex for 15% of their missing Health every 5 seconds. They also take 25% less multi-target damage for 5 seconds (damage reduction does not stack).",
         used: false,
+        id: uuidv4(),
     },
     {
         name: "Runaan's Hurricane",
@@ -372,6 +408,7 @@ const items: Item[] = [
         baseItem2: BaseItems.Bow,
         ability: "Grant 20% bonus Attack Damage. Attacks fire a bolt at a nearby enemy, dealing 50% Attack Damage as physical damage.",
         used: false,
+        id: uuidv4(),
     },
     {
         name: "Shroud of Stillness",
@@ -379,6 +416,7 @@ const items: Item[] = [
         baseItem2: BaseItems.Gloves,
         ability: "Grant 250 bonus Health. Combat start: Shoots a beam that 30% Mana Reaves enemies.",
         used: false,
+        id: uuidv4(),
     },
     {
         name: "Spear of Shojin",
@@ -386,6 +424,7 @@ const items: Item[] = [
         baseItem2: BaseItems.Tear,
         ability: "Grant 25 bonus Ability Power. Attacks restore 5 additional Mana.",
         used: false,
+        id: uuidv4(),
     },
     {
         name: "Statikk Shiv",
@@ -393,6 +432,7 @@ const items: Item[] = [
         baseItem2: BaseItems.Tear,
         ability: "Grant 15 bonus Ability Power. Every 3rd attack unleashes chain lightning that bounces to 4 enemies, dealing 30 magic damage and 50% Shredding them for 5 seconds.",
         used: false,
+        id: uuidv4(),
     },
     {
         name: "Sunfire Cape",
@@ -400,6 +440,7 @@ const items: Item[] = [
         baseItem2: BaseItems.Belt,
         ability: "Grant 100 bonus Health. Every 2 seconds, an enemy within 2 hexes is 10% Burned and 33% Wounded for 10 seconds.",
         used: false,
+        id: uuidv4(),
     },
     {
         name: "Tactician's Crown",
@@ -407,6 +448,7 @@ const items: Item[] = [
         baseItem2: BaseItems.Spatula,
         ability: "Your team gains +1 maximum team size.",
         used: false,
+        id: uuidv4(),
     },
     {
         name: "Thief's Gloves",
@@ -414,6 +456,7 @@ const items: Item[] = [
         baseItem2: BaseItems.Gloves,
         ability: "Each round: Equip 2 random items.",
         used: false,
+        id: uuidv4(),
     },
     {
         name: "Titan's Resolve",
@@ -421,6 +464,7 @@ const items: Item[] = [
         baseItem2: BaseItems.Bow,
         ability: "Grant 2% Attack Damage and 2 Ability Power when attacking or taking damage, stacking up to 25 times. At full stacks, grant 25 Armor and Magic Resist.",
         used: false,
+        id: uuidv4(),
     },
     {
         name: "Warmog's Armor",
@@ -428,6 +472,7 @@ const items: Item[] = [
         baseItem2: BaseItems.Belt,
         ability: "Grant 500 bonus Health.",
         used: false,
+        id: uuidv4(),
     },
     {
         name: "Zeke's Herald",
@@ -435,6 +480,7 @@ const items: Item[] = [
         baseItem2: BaseItems.Belt,
         ability: "Combat start: Grant 15% Attack Speed to the holder and allies within 1 hex in the same row.",
         used: false,
+        id: uuidv4(),
     },
     {
         name: "Zephyr",
@@ -442,6 +488,7 @@ const items: Item[] = [
         baseItem2: BaseItems.Cloak,
         ability: "Grant 15% bonus Attack Speed. Combat start: Summon a whirlwind on the opposite side of the arena that removes the closest enemy from combat for 5 seconds. [Ignores crowd control immunity.]",
         used: false,
+        id: uuidv4(),
     },
     {
         name: "Zz'Rot Portal",
@@ -449,6 +496,7 @@ const items: Item[] = [
         baseItem2: BaseItems.Bow,
         ability: "Combat start: Taunt. On death, a Voidspawn arises, Taunting nearby enemies.",
         used: false,
+        id: uuidv4(),
     },
 ]
 
