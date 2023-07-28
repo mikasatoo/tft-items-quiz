@@ -53,10 +53,12 @@ export const QuizQuestions = () => {
     const [result, setResult] = useState<string>('');
 
     const [questionContentImgs, setQuestionContentImgs] = useState({ img1: '', img2: '' });
-    const [option1Imgs, setOption1Imgs] = useState({ img1: '', img2: '' });
-    const [option2Imgs, setOption2Imgs] = useState({ img1: '', img2: '' });
-    const [option3Imgs, setOption3Imgs] = useState({ img1: '', img2: '' });
-    const [option4Imgs, setOption4Imgs] = useState({ img1: '', img2: '' });
+    const [optionImgs, setOptionImgs] = useState({
+        option1Img1: '', option1Img2: '',
+        option2Img1: '', option2Img2: '',
+        option3Img1: '', option3Img2: '',
+        option4Img1: '', option4Img2: ''
+    });
 
     // Component to render the progress bar
     const QuizProgressBar = () => {
@@ -141,10 +143,12 @@ export const QuizQuestions = () => {
             const option2 = newShuffledArray[1];
             const option3 = newShuffledArray[2];
             const option4 = newShuffledArray[3];
-            setOption1Imgs({ img1: itemImages[option1], img2: ''});
-            setOption2Imgs({ img1: itemImages[option2], img2: ''});
-            setOption3Imgs({ img1: itemImages[option3], img2: ''});
-            setOption4Imgs({ img1: itemImages[option4], img2: ''});
+            setOptionImgs({
+                option1Img1: itemImages[option1], option1Img2: '',
+                option2Img1: itemImages[option2], option2Img2: '',
+                option3Img1: itemImages[option3], option3Img2: '',
+                option4Img1: itemImages[option4], option4Img2: '',
+            });
         } else if (questionType === 'chooseBaseItems') {
             const option1Array = newShuffledArray[0].split(' + ');
             const option1Part1 = option1Array[0];
@@ -158,15 +162,19 @@ export const QuizQuestions = () => {
             const option4Array = newShuffledArray[3].split(' + ');
             const option4Part1 = option4Array[0];
             const option4Part2 = option4Array[option4Array.length - 1];
-            setOption1Imgs({ img1: itemImages[option1Part1], img2: itemImages[option1Part2]});
-            setOption2Imgs({ img1: itemImages[option2Part1], img2: itemImages[option2Part2]});
-            setOption3Imgs({ img1: itemImages[option3Part1], img2: itemImages[option3Part2]});
-            setOption4Imgs({ img1: itemImages[option4Part1], img2: itemImages[option4Part2]});
+            setOptionImgs({
+                option1Img1: itemImages[option1Part1], option1Img2: itemImages[option1Part2],
+                option2Img1: itemImages[option2Part1], option2Img2: itemImages[option2Part2],
+                option3Img1: itemImages[option3Part1], option3Img2: itemImages[option3Part2],
+                option4Img1: itemImages[option4Part1], option4Img2: itemImages[option4Part2],
+            });
         } else if (questionType === 'chooseAbility') {
-            setOption1Imgs({ img1: '', img2: '' });
-            setOption2Imgs({ img1: '', img2: '' });
-            setOption3Imgs({ img1: '', img2: '' });
-            setOption4Imgs({ img1: '', img2: '' });
+            setOptionImgs({
+                option1Img1: '', option1Img2: '',
+                option2Img1: '', option2Img2: '',
+                option3Img1: '', option3Img2: '',
+                option4Img1: '', option4Img2: '',
+            });
         }
     }
 
@@ -222,20 +230,20 @@ export const QuizQuestions = () => {
         }
 
         if (optionNum === 1) {
-            optionImg1 = option1Imgs.img1;
-            optionImg2 = option1Imgs.img2;
+            optionImg1 = optionImgs.option1Img1;
+            optionImg2 = optionImgs.option1Img2;
             optionLetter = 'a';
         } else if (optionNum === 2) {
-            optionImg1 = option2Imgs.img1;
-            optionImg2 = option2Imgs.img2;
+            optionImg1 = optionImgs.option2Img1;
+            optionImg2 = optionImgs.option2Img2;
             optionLetter = 'b';
         } else if (optionNum === 3) {
-            optionImg1 = option3Imgs.img1;
-            optionImg2 = option3Imgs.img2;
+            optionImg1 = optionImgs.option3Img1;
+            optionImg2 = optionImgs.option3Img2;
             optionLetter = 'c';
         } else if (optionNum === 4) {
-            optionImg1 = option4Imgs.img1;
-            optionImg2 = option4Imgs.img2;
+            optionImg1 = optionImgs.option4Img1;
+            optionImg2 = optionImgs.option4Img2;
             optionLetter = 'd';
         } else {
             optionImg1 = '';
@@ -260,7 +268,7 @@ export const QuizQuestions = () => {
             </button>
         )
     }
-    
+
     // *** Run handleQuestion() once on first render and when currentQuestionNum changes??
     useEffect(() => {
         createQuestion();
@@ -281,7 +289,7 @@ export const QuizQuestions = () => {
                         {questionText}
                     </div>
                     <div className='question-content'>
-                        {questionContent}
+                        <b>{questionContent}</b>
                         {questionContentImgs.img1 !== '' ? (
                             <div className='question-content-images'>
                                 <img src={questionContentImgs.img1}></img>
