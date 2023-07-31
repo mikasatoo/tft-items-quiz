@@ -1,7 +1,7 @@
-<h3>⚔️ Teamfight Tactics Items Quiz Application</h3>
+<h2>⚔️ Teamfight Tactics Items Quiz Application</h3>
 
 <p>
-    Features:
+    📋 Features:
     <ul>
         <li>Choose from <b>5 or 10 questions</b></li>
         <li>Includes <b>Multiple question types</b>, which are randomly selected from when generating each question</li>
@@ -22,5 +22,5 @@
 </p>
 
 <p>
-    🕹️ Give it a try at: ...
+    🕹️ Give it a try at ...
 </p>
