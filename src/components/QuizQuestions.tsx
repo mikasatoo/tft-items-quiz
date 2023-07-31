@@ -43,7 +43,7 @@ function shuffleArray(array: string[]) {
 export const QuizQuestions = () => {
     // Access variables and functions from the QuizContext
     const { totalQuestionNum, currentQuestionNum, updateCurrentQuestionNum, updateQuizStatus, score, updateScore, updateRank } = useQuizContext();
-
+    
     // Create other state variables
     const [questionText, setQuestionText] = useState<string>('');
     const [questionContent, setQuestionContent] = useState<string>('');
