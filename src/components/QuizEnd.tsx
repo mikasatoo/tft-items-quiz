@@ -1,18 +1,5 @@
 import { useQuizContext } from '../context';
-import Normals from '../assets/Normals.jpeg';
-import Iron from '../assets/Iron.png';
-import Bronze from '../assets/Bronze.png';
-import Silver from '../assets/Silver.png';
-import Gold from '../assets/Gold.png';
-
-// Object with image source references (corresponding to each rank)
-const images = {
-    "Normals player": Normals,
-    Iron,
-    Bronze,
-    Silver,
-    Gold
-}
+import { rankImages } from '../helper/RankImagesHelper';
 
 export const QuizEnd = () => {
     // Access variables and functions from the QuizContext
@@ -35,7 +22,7 @@ export const QuizEnd = () => {
             </div>
             <div className='rank'>
                 <div className='rank-text'>{rank}</div>
-                <img className='rank-img' src={ images[rank] }></img>
+                <img className='rank-img' src={ rankImages[rank] }></img>
             </div>
             <div className='retry-btn-div'>
                 <button
