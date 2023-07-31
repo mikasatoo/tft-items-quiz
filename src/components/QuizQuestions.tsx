@@ -269,10 +269,14 @@ export const QuizQuestions = () => {
         )
     }
 
-    // *** Run handleQuestion() once on first render and when currentQuestionNum changes??
+    // Run createQuestion() once per component render
+    let didRender = false;
     useEffect(() => {
-        createQuestion();
-        console.log('sup');
+        if (!didRender) {
+            didRender = true;
+            createQuestion();
+            console.log('New question created');
+        }
     }, []);
 
     // Render the QuizQuestions view
