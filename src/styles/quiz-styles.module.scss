@@ -1,7 +1,12 @@
 $primary-background: #0d202b;
 $primary-text: hsla(0,0%,100%,.9);
 $secondary-text: #579dd4;
-$border: #d47559;
+
+$primary-btn-background: #f9f9f9;
+$primary-btn--text: #213547;
+$secondary-btn-background: #102531;
+$secondary-btn-text: #f9f9f9;
+$btn-border: #d47559;
 
 .content {
     font-family: Inter, system-ui, Avenir, Helvetica, Arial, sans-serif;
@@ -25,12 +30,52 @@ $border: #d47559;
         margin: auto 0;
     }
 
+    h1, h2, h3 {
+        margin-block: 0;
+        margin-bottom: 20px;
+    }
+
+    h1 {
+        font-size: 50px;
+    }
+
+    h2 {
+        font-size: 36px;
+    }
+
+    h3 {
+        font-size: 24px;
+    }
+
+    button {
+        font-size: 20px;
+        border-radius: 8px;
+        border: 1px solid transparent;
+        box-sizing: border-box;
+        padding: 10px 15px;
+        margin: 10px 5px;
+        min-width: 100px;
+        font-weight: 500;
+        font-family: inherit;
+        background-color: $primary-btn-background;
+        cursor: pointer;
+
+        &:hover {
+            border-color: $btn-border;
+            transition-duration: 0.25s;
+        }
+        
+        &:focus,
+        &:focus-visible {
+            outline: 2px solid $btn-border;
+        }
+    }
+
     .footer {
         position: absolute;
         bottom: 0;
         width: 100%;
         padding: 20px;
-
     }
 }
 

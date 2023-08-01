@@ -1,5 +1,6 @@
 import { useQuizContext } from '../context';
 import { toast } from 'react-hot-toast';
+import styles from '../styles/quizQuestions-styles.module.scss';
 
 export const QuizStart = () => {
     // Access functions from the QuizContext
@@ -16,18 +17,18 @@ export const QuizStart = () => {
 
     // Render the QuizStart view
     return (
-        <div className='start-view'>
+        <div className={styles.startView}>
             <h1>Teamfight Tactics</h1>
-            <h2>Items Quiz</h2>
+            <h2>⚔️ Items Quiz ⚔️</h2>
             <div className='questions-btn-div'>
                 <button
-                    className='5-questions-btn'
+                    className={styles.secondaryBtn}
                     onClick={() => updateTotalQuestionNum(5)}
                 >
                     5 questions
                 </button>
                 <button
-                    className='10-questions-btn'
+                    className={styles.secondaryBtn}
                     onClick={() => updateTotalQuestionNum(10)}
                 >
                     10 questions
