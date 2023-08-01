@@ -48,9 +48,9 @@ $btn-border: #d47559;
     }
 
     button {
-        font-size: 20px;
+        font-size: 16px;
         border-radius: 8px;
-        border: 1px solid transparent;
+        border: 2px solid transparent;
         box-sizing: border-box;
         padding: 10px 15px;
         margin: 10px 5px;
@@ -60,6 +60,10 @@ $btn-border: #d47559;
         background-color: $primary-btn-background;
         cursor: pointer;
 
+        &.primaryButton {
+            font-size: 20px;
+        }
+
         &:hover {
             border-color: $btn-border;
             transition-duration: 0.25s;
@@ -67,7 +71,7 @@ $btn-border: #d47559;
         
         &:focus,
         &:focus-visible {
-            outline: 2px solid $btn-border;
+            outline: 4px solid $btn-border;
         }
     }
 

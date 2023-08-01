@@ -20,6 +20,36 @@
 }
 .content h1, .content h2, .content h3 {
   margin-block: 0;
+  margin-bottom: 20px;
+}
+.content h1 {
+  font-size: 50px;
+}
+.content h2 {
+  font-size: 36px;
+}
+.content h3 {
+  font-size: 24px;
+}
+.content button {
+  font-size: 20px;
+  border-radius: 8px;
+  border: 2px solid transparent;
+  box-sizing: border-box;
+  padding: 10px 15px;
+  margin: 10px 5px;
+  min-width: 100px;
+  font-weight: 500;
+  font-family: inherit;
+  background-color: #f9f9f9;
+  cursor: pointer;
+}
+.content button:hover {
+  border-color: #d47559;
+  transition-duration: 0.25s;
+}
+.content button:focus, .content button:focus-visible {
+  outline: 4px solid #d47559;
 }
 .content .footer {
   position: absolute;

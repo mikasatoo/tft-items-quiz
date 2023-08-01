@@ -8,6 +8,13 @@ $secondary-btn-background: #102531;
 $secondary-btn-text: #f9f9f9;
 $border: #d47559;
 
-.questionView {
-    
+.startView {
+    h2 {
+        color: $secondary-text;
+    }
+
+    .secondaryBtn {
+        background-color: $secondary-btn-background;
+        color: $secondary-btn-text;
+    }
 }

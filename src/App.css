@@ -36,10 +36,10 @@
 
 
 /* *** Checking that styling of the correct option after submitting an answer works */
-.options-inactive .correct-option {
+.inactive .correct-option {
   background-color: rgba(26, 177, 26, 0.534);
 }
 
-.options-inactive .incorrect-option {
+.inactive .incorrect-option {
   background-color: rgba(218, 27, 27, 0.716);
 }

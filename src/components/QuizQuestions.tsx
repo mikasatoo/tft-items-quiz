@@ -3,6 +3,7 @@ import { useQuizContext } from '../context';
 import { itemImages, items } from '../helper/ItemsHelper';
 import { toast } from 'react-hot-toast';
 import ProgressBar from '@ramonak/react-progress-bar';
+import styles from '../styles/quizQuestions-styles.module.scss';
 
 // Define type for Question objects
 type Question = {
@@ -281,39 +282,31 @@ export const QuizQuestions = () => {
 
     // Render the QuizQuestions view
     return (
-        <div className='question-view'>
+        <div className={styles.questionView}>
             <div className='progress-bar'>
-                {currentQuestionNum} of {totalQuestionNum}
+                <p>{currentQuestionNum} of {totalQuestionNum}</p>
                 <QuizProgressBar />
             </div>
 
-            <div className='question-options-div'>
-                <div className='question'>
-                    <div className='question-text'>
-                        {questionText}
-                    </div>
-                    <div className='question-content'>
-                        <b>{questionContent}</b>
-                        {questionContentImgs.img1 !== '' ? (
-                            <div className='question-content-images'>
-                                <img src={questionContentImgs.img1}></img>
-                                {questionContentImgs.img2 !== '' ? <img src={questionContentImgs.img2}></img> : ''}
-                            </div>
-                        ) : ('')}
-                    </div>
+            <p className='question-text'>{questionText}</p>
+            <p className='question-content'>{questionContent}</p>
+            {questionContentImgs.img1 !== '' ? (
+                <div className='question-content-images'>
+                    <img src={questionContentImgs.img1}></img>
+                    {questionContentImgs.img2 !== '' ? <img src={questionContentImgs.img2}></img> : ''}
                 </div>
+            ) : ('')}
 
-                <div className={result === '' ? 'options' : 'options-inactive'}>
-                    {/* *** Should I make this into a component and pass props, rather than a function??? */}
-                    {createOptionButton(1, shuffledOptions[0])}
-                    {createOptionButton(2, shuffledOptions[1])}
-                    {createOptionButton(3, shuffledOptions[2])}
-                    {createOptionButton(4, shuffledOptions[3])}
-                </div>
+            <div className={result === '' ? 'active' : 'inactive'}>
+                {/* *** Should I make this into a component and pass props, rather than a function??? */}
+                {createOptionButton(1, shuffledOptions[0])}
+                {createOptionButton(2, shuffledOptions[1])}
+                {createOptionButton(3, shuffledOptions[2])}
+                {createOptionButton(4, shuffledOptions[3])}
             </div>
 
             {answer !== '' ? (
-                <div className={result === '' ? 'submit-btn-div' : 'submit-btn-div inactive'}>
+                <div className={result === '' ? 'active' : 'inactive'}>
                     <button
                         className='submit-btn'
                         onClick={() => 
@@ -327,17 +320,14 @@ export const QuizQuestions = () => {
 
             {result !== '' ? (
                 <div className='result'>
-                    <div className='result-output'>
-                        {result}
-                    </div>
-                    <div className='next-btn-div'>
-                        <button
-                            className='next-btn'
-                            onClick={() => handleNext()}
-                        >
-                            Next
-                        </button>
-                    </div>
+                    <p className='result-output'>{result}</p>
+                    
+                    <button
+                        className='next-btn'
+                        onClick={() => handleNext()}
+                    >
+                        Next
+                    </button>
                 </div>
             ) : ('')}
         </div>
