@@ -1,13 +1,25 @@
+// Variables
 $primary-background: #0d202b;
 $primary-text: hsla(0,0%,100%,.9);
 $secondary-text: #579dd4;
 
-$primary-btn-background: #f9f9f9;
-$primary-btn--text: #213547;
-$secondary-btn-background: #102531;
-$secondary-btn-text: #f9f9f9;
-$btn-border: #d47559;
+// Import partials
+@import "buttons";
 
+// Style groupings
+@mixin flex-column-container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-items: center;
+}
+
+@mixin heading-margins {
+    margin-block: 0;
+    margin-bottom: 20px;
+}
+
+// Global styling
 .content {
     font-family: Inter, system-ui, Avenir, Helvetica, Arial, sans-serif;
     margin: 0;
@@ -16,70 +28,48 @@ $btn-border: #d47559;
     position: relative;
     background-color: $primary-background;
     color: $primary-text;
-
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    justify-items: center;
     text-align: center;
+    @include flex-column-container;
+}
 
-    .view {
-        box-sizing: border-box;
-        padding: 20px;
-        width: 100%;
-        margin: auto 0;
-    }
+.view {
+    box-sizing: border-box;
+    padding: 20px;
+    width: 100%;
+    margin: auto 0;
+}
 
-    h1, h2, h3 {
-        margin-block: 0;
-        margin-bottom: 20px;
-    }
+h1 {
+    @include heading-margins;
+    font-size: 50px;
+}
 
-    h1 {
-        font-size: 50px;
-    }
+h2 {
+    @include heading-margins;
+    font-size: 36px;
+}
 
+h3 {
+    @include heading-margins;
+    font-size: 24px;
+}
+
+.footer {
+    position: absolute;
+    bottom: 0;
+    width: 100%;
+    padding: 20px;
+}
+
+// Additional styling for QuizStart view
+.startView {
     h2 {
-        font-size: 36px;
-    }
-
-    h3 {
-        font-size: 24px;
-    }
-
-    button {
-        font-size: 16px;
-        border-radius: 8px;
-        border: 2px solid transparent;
-        box-sizing: border-box;
-        padding: 10px 15px;
-        margin: 10px 5px;
-        min-width: 100px;
-        font-weight: 500;
-        font-family: inherit;
-        background-color: $primary-btn-background;
-        cursor: pointer;
-
-        &.primaryButton {
-            font-size: 20px;
-        }
-
-        &:hover {
-            border-color: $btn-border;
-            transition-duration: 0.25s;
-        }
-        
-        &:focus,
-        &:focus-visible {
-            outline: 4px solid $btn-border;
-        }
-    }
-
-    .footer {
-        position: absolute;
-        bottom: 0;
-        width: 100%;
-        padding: 20px;
+        color: $secondary-text;
     }
 }
 
+// Additional styling for QuizQuestions view
+.questionsView {
+
+    
+}

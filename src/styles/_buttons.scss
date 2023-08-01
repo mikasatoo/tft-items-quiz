@@ -1,0 +1,50 @@
+$primary-btn-background: #f9f9f9;
+$primary-btn--text: #213547;
+$secondary-btn-background: #102531;
+$secondary-btn-text: #f9f9f9;
+$btn-border: #d47559;
+
+button {
+    font-size: 16px;
+    border-radius: 8px;
+    border: 2px solid transparent;
+    box-sizing: border-box;
+    padding: 10px 15px;
+    margin: 10px 5px;
+    min-width: 100px;
+    font-weight: 500;
+    font-family: inherit;
+    background-color: $primary-btn-background;
+    cursor: pointer;
+
+    &.primaryButton {
+        font-size: 20px;
+    }
+
+    &.secondaryBtn {
+        background-color: $secondary-btn-background;
+        color: $secondary-btn-text;
+    }
+
+    &:hover {
+        border-color: $btn-border;
+        transition-duration: 0.25s;
+    }
+    
+    &:focus,
+    &:focus-visible {
+        outline: 4px solid $btn-border;
+    }
+}
+
+// *** This stuff isn't working - is it not updating the style when the inactive class is added??
+div.inactive {
+    & button.correctOption {
+        background-color: rgba(26, 177, 26, 0.534);
+    }
+
+    & button.incorrectOption {
+        background-color: rgba(218, 27, 27, 0.716);
+    }
+}
+

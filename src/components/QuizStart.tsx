@@ -1,6 +1,6 @@
 import { useQuizContext } from '../context';
 import { toast } from 'react-hot-toast';
-import styles from '../styles/quizStart-styles.module.scss';
+import styles from '../styles/quiz-styles.module.scss';
 
 export const QuizStart = () => {
     // Access functions from the QuizContext

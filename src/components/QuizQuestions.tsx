@@ -3,7 +3,7 @@ import { useQuizContext } from '../context';
 import { itemImages, items } from '../helper/ItemsHelper';
 import { toast } from 'react-hot-toast';
 import ProgressBar from '@ramonak/react-progress-bar';
-import styles from '../styles/quizQuestions-styles.module.scss';
+import styles from '../styles/quiz-styles.module.scss';
 
 // Define type for Question objects
 type Question = {
@@ -223,11 +223,11 @@ export const QuizQuestions = () => {
         let optionLetter: string;
 
         if (optionValue === correctOption) {
-            optionClassName = `option-${optionNum}-btn correct-option`;
+            optionClassName = 'correctOption';
         } else if (optionValue === answer) {
-            optionClassName = `option-${optionNum}-btn incorrect-option`;
+            optionClassName = 'incorrectOption';
         } else {
-            optionClassName = `option-${optionNum}-btn`;
+            optionClassName = 'optionBtn';
         }
 
         if (optionNum === 1) {
@@ -254,7 +254,7 @@ export const QuizQuestions = () => {
 
         return (
             <button
-                className={optionClassName}
+                className={`${styles.secondaryBtn} ${styles[optionClassName]}`}
                 onClick={() =>
                     (result === '' ? handleAnswerSelection(optionValue) : toast.error("You have already submitted your answer!"))
                 }
@@ -282,7 +282,7 @@ export const QuizQuestions = () => {
 
     // Render the QuizQuestions view
     return (
-        <div className={styles.questionView}>
+        <div className={styles.questionsView}>
             <div className='progress-bar'>
                 <p>{currentQuestionNum} of {totalQuestionNum}</p>
                 <QuizProgressBar />
@@ -308,7 +308,7 @@ export const QuizQuestions = () => {
             {answer !== '' ? (
                 <div className={result === '' ? 'active' : 'inactive'}>
                     <button
-                        className='submit-btn'
+                        className={styles.primaryButton}
                         onClick={() => 
                             (result === '' ? handleSubmit() : toast.error("You have already submitted your answer!"))
                         }
@@ -321,9 +321,9 @@ export const QuizQuestions = () => {
             {result !== '' ? (
                 <div className='result'>
                     <p className='result-output'>{result}</p>
-                    
+
                     <button
-                        className='next-btn'
+                        className={styles.primaryButton}
                         onClick={() => handleNext()}
                     >
                         Next
