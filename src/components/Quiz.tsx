@@ -2,6 +2,7 @@ import { QuizStart } from './QuizStart';
 import { QuizQuestions } from './QuizQuestions';
 import { QuizEnd } from './QuizEnd';
 import { useQuizContext } from '../context';
+import styles from '../styles/quiz-styles.module.scss';
 
 type HandleViewProps = {
     view: string
@@ -23,6 +24,14 @@ export const Quiz = () => {
     }
     
     return (
-        <HandleView view={quizStatus} />
+        <div className={styles.content}>
+            <div className={styles.view}>
+                <HandleView view={quizStatus} />
+            </div>
+        
+            <div className={styles.footer}>
+                mikasatoo
+            </div>
+        </div>
     );
 }

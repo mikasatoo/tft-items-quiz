@@ -1,0 +1,1 @@
+{"version":3,"sources":["quiz-styles.module.scss","quiz-styles.module.css"],"names":[],"mappings":"AAKA;EACI,mEAAA;EACA,SAAA;EACA,iBAAA;EACA,YAAA;EACA,kBAAA;EACA,yBAXiB;EAYjB,6BAXW;EAaX,aAAA;EACA,sBAAA;EACA,mBAAA;EACA,qBAAA;EACA,kBAAA;ACLJ;ADOI;EACI,sBAAA;EACA,aAAA;EACA,WAAA;EACA,cAAA;ACLR;ADQI;EACI,kBAAA;EACA,SAAA;EACA,WAAA;EACA,aAAA;ACNR","file":"quiz-styles.module.css"}

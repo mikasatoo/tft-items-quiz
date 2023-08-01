@@ -1,0 +1,36 @@
+$primary-background: #0d202b;
+$primary-text: hsla(0,0%,100%,.9);
+$secondary-text: #579dd4;
+$border: #d47559;
+
+.content {
+    font-family: Inter, system-ui, Avenir, Helvetica, Arial, sans-serif;
+    margin: 0;
+    min-height: 100vh;
+    width: 100vw;
+    position: relative;
+    background-color: $primary-background;
+    color: $primary-text;
+
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-items: center;
+    text-align: center;
+
+    .view {
+        box-sizing: border-box;
+        padding: 20px;
+        width: 100%;
+        margin: auto 0;
+    }
+
+    .footer {
+        position: absolute;
+        bottom: 0;
+        width: 100%;
+        padding: 20px;
+
+    }
+}
+
