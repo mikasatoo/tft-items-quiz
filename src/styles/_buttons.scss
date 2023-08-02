@@ -3,8 +3,8 @@ $primary-btn--text: #213547;
 $secondary-btn-background: #102531;
 $secondary-btn-text: #f9f9f9;
 $btn-border: #d47559;
-$correct-btn-background: #28a745;
-$incorrect-btn-background: #dc3545;
+$correct: #28a745;
+$incorrect: #dc3545;
 
 button {
     font-size: 16px;
@@ -14,18 +14,33 @@ button {
     padding: 10px 15px;
     margin: 10px 5px;
     min-width: 100px;
-    font-weight: 500;
     font-family: inherit;
     background-color: $primary-btn-background;
     cursor: pointer;
 
     &.primaryButton {
-        font-size: 20px;
+        // font-size: 20px;
+        font-weight: 500;
     }
 
     &.secondaryBtn {
         background-color: $secondary-btn-background;
         color: $secondary-btn-text;
+        font-weight: 500;
+    }
+
+    &.optionBtn {
+        background-color: $secondary-btn-background;
+        color: $secondary-btn-text;
+        width: 200px;
+        // *** how to make them all the same height?? (don't want item ones to be same height as ability ones though)
+
+        //*** how to space the text and images apart a bit, and the images from each other??
+
+        img {
+            width: 64px;
+            height: auto;
+        }
     }
 
     &:hover {
@@ -41,12 +56,12 @@ button {
 
 // After submitting answer, style the correct option green and the incorrect (selected) option red
 div.inactive {
-    & button.correctOption {
-        background-color: $correct-btn-background;
+    button.correctOption {
+        background-color: $correct;
     }
 
-    & button.incorrectOption {
-        background-color: $incorrect-btn-background;
+    button.incorrectOption {
+        background-color: $incorrect;
     }
 }
 

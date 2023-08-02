@@ -19,9 +19,17 @@ $secondary-text: #579dd4;
     margin-bottom: 20px;
 }
 
+@mixin grid-container {
+    display: grid;
+    gap: 20px;
+    justify-content: center;
+    align-content: center;
+}
+
 // Global styling
 .content {
     font-family: Inter, system-ui, Avenir, Helvetica, Arial, sans-serif;
+    font-size: 16px;
     margin: 0;
     min-height: 100vh;
     width: 100vw;
@@ -56,9 +64,14 @@ h3 {
 
 .footer {
     position: absolute;
+    box-sizing: border-box;
     bottom: 0;
     width: 100%;
     padding: 20px;
+}
+
+p {
+    margin: 0;
 }
 
 // Additional styling for QuizStart view
@@ -70,6 +83,77 @@ h3 {
 
 // Additional styling for QuizQuestions view
 .questionsView {
+    @include flex-column-container;
 
-    
+    .progressBar {
+        width: 90%;
+
+        p {
+            margin-bottom: 10px;
+        }
+
+        // *** Add styling for the progress bar itself
+
+    }
+
+    .questionText {
+        margin-top: 30px;
+        margin-bottom: 20px;
+        font-size: 20px;
+        width: 90%;
+    }
+
+    .questionContent {
+        margin-bottom: 10px;
+        width: 90%;
+
+        p {
+            margin-bottom: 10px;
+            font-size: 20px;
+            font-weight: 700;
+        }
+
+        .questionContentImgs {
+            @include grid-container;
+            grid-template-columns: repeat(auto-fit, 64px);
+            margin-bottom: 10px;
+
+            img {
+                width: 64px;
+                height: auto;
+            }
+        }
+    }
+
+    .options {
+        @include grid-container;
+        grid-template-columns: repeat(2, auto-fit);
+        width: 100%;
+    }
+
+    .result {
+        margin-top: 10px;
+        width: 90%;
+
+        .correctResult {
+            font-size: 20px;
+            font-weight: 500;
+            color: $correct;
+        }
+
+        .incorrectResult {
+            font-size: 20px;
+            font-weight: 500;
+            color: $incorrect;
+        }
+
+        .correctAnswer {
+            margin: 10px 0;
+        }
+    }
+}
+
+// Additional styling for QuizEnd view
+.endView {
+
 }

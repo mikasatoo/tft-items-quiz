@@ -51,7 +51,8 @@ export const QuizQuestions = () => {
     const [correctOption, setCorrectOption] = useState<string>('');
     const [shuffledOptions, setShuffledOptions] = useState<string[]>([]);
     const [answer, setAnswer] = useState<string>('');
-    const [result, setResult] = useState<string>('');
+    // const [result, setResult] = useState<string>('');
+    const [result, setResult] = useState({ output: '', correctAnswer: '' });
 
     const [questionContentImgs, setQuestionContentImgs] = useState({ img1: '', img2: '' });
     const [optionImgs, setOptionImgs] = useState({
@@ -181,7 +182,7 @@ export const QuizQuestions = () => {
 
     // Function to handle selecting an answer (before submitting)
     const handleAnswerSelection = (option: string) => {
-        if (result === '') {
+        if (result.output === '') {
             setAnswer(option);
         }
     }
@@ -189,19 +190,19 @@ export const QuizQuestions = () => {
     // Function to handle submitting an answer
     const handleSubmit = () => {
         if (answer === correctOption) {
-            setResult(`Correct! You selected: ${correctOption}`);
+            setResult({ output: 'Correct!', correctAnswer: `You selected: ${correctOption}` });
         } else {
-            setResult(`Incorrect! The correct answer is: ${correctOption}`);
+            setResult({ output: 'Incorrect!', correctAnswer: `The correct answer is: ${correctOption}` });
         }
     }
 
     // Function to handle next question
     const handleNext = () => {
         setAnswer('');
-        setResult('');
+        setResult({ output: '', correctAnswer: '' });
 
         let updatedScore = score;
-        if (result.includes('Correct!')) {
+        if (result.output === 'Correct!') {
             updatedScore = score + 1;
             updateScore(updatedScore);
         }
@@ -227,7 +228,7 @@ export const QuizQuestions = () => {
         } else if (optionValue === answer) {
             optionClassName = 'incorrectOption';
         } else {
-            optionClassName = 'optionBtn';
+            optionClassName = 'option';
         }
 
         if (optionNum === 1) {
@@ -254,9 +255,9 @@ export const QuizQuestions = () => {
 
         return (
             <button
-                className={`${styles.secondaryBtn} ${styles[optionClassName]}`}
+                className={`${styles.optionBtn} ${styles[optionClassName]}`}
                 onClick={() =>
-                    (result === '' ? handleAnswerSelection(optionValue) : toast.error("You have already submitted your answer!"))
+                    (result.output === '' ? handleAnswerSelection(optionValue) : toast.error("You have already submitted your answer!"))
                 }
             >
                 {optionLetter}. {optionValue}
@@ -283,34 +284,39 @@ export const QuizQuestions = () => {
     // Render the QuizQuestions view
     return (
         <div className={styles.questionsView}>
-            <div className='progress-bar'>
+            <div className={styles.progressBar}>
                 <p>{currentQuestionNum} of {totalQuestionNum}</p>
                 <QuizProgressBar />
             </div>
 
-            <p className='question-text'>{questionText}</p>
-            <p className='question-content'>{questionContent}</p>
-            {questionContentImgs.img1 !== '' ? (
-                <div className='question-content-images'>
-                    <img src={questionContentImgs.img1}></img>
-                    {questionContentImgs.img2 !== '' ? <img src={questionContentImgs.img2}></img> : ''}
-                </div>
-            ) : ('')}
+            <p className={styles.questionText}>{questionText}</p>
 
-            <div className={result === '' ? styles.active : styles.inactive}>
-                {/* *** Should I make this into a component and pass props, rather than a function??? */}
-                {createOptionButton(1, shuffledOptions[0])}
-                {createOptionButton(2, shuffledOptions[1])}
-                {createOptionButton(3, shuffledOptions[2])}
-                {createOptionButton(4, shuffledOptions[3])}
+            <div className={styles.questionContent}>
+                <p>{questionContent}</p>
+                {questionContentImgs.img1 !== '' ? (
+                    <div className={styles.questionContentImgs}>
+                        <img src={questionContentImgs.img1}></img>
+                        {questionContentImgs.img2 !== '' ? <img src={questionContentImgs.img2}></img> : ''}
+                    </div>
+                ) : ('')}
+            </div>
+
+            <div className={styles.options}>
+                <div className={result.output === '' ? styles.active : styles.inactive}>
+                    {/* *** Should I make this into a component and pass props, rather than a function??? */}
+                    {createOptionButton(1, shuffledOptions[0])}
+                    {createOptionButton(2, shuffledOptions[1])}
+                    {createOptionButton(3, shuffledOptions[2])}
+                    {createOptionButton(4, shuffledOptions[3])}
+                </div>
             </div>
 
             {answer !== '' ? (
-                <div className={result === '' ? styles.active : styles.inactive}>
+                <div className={result.output === '' ? styles.active : styles.inactive}>
                     <button
                         className={styles.primaryButton}
                         onClick={() => 
-                            (result === '' ? handleSubmit() : toast.error("You have already submitted your answer!"))
+                            (result.output === '' ? handleSubmit() : toast.error("You have already submitted your answer!"))
                         }
                     >
                         Submit
@@ -318,9 +324,10 @@ export const QuizQuestions = () => {
                 </div>
             ) : ('')}
 
-            {result !== '' ? (
-                <div className='result'>
-                    <p className='result-output'>{result}</p>
+            {result.output !== '' ? (
+                <div className={styles.result}>
+                    <p className={result.output === 'Correct!' ? styles.correctResult : styles.incorrectResult}>{result.output}</p>
+                    <p className={styles.correctAnswer}>{result.correctAnswer}</p>
 
                     <button
                         className={styles.primaryButton}
