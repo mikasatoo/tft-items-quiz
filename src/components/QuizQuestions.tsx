@@ -297,7 +297,7 @@ export const QuizQuestions = () => {
                 </div>
             ) : ('')}
 
-            <div className={result === '' ? 'active' : 'inactive'}>
+            <div className={result === '' ? styles.active : styles.inactive}>
                 {/* *** Should I make this into a component and pass props, rather than a function??? */}
                 {createOptionButton(1, shuffledOptions[0])}
                 {createOptionButton(2, shuffledOptions[1])}
@@ -306,7 +306,7 @@ export const QuizQuestions = () => {
             </div>
 
             {answer !== '' ? (
-                <div className={result === '' ? 'active' : 'inactive'}>
+                <div className={result === '' ? styles.active : styles.inactive}>
                     <button
                         className={styles.primaryButton}
                         onClick={() => 
