@@ -1,5 +1,6 @@
 import { useQuizContext } from '../context';
 import { rankImages } from '../helper/RankImagesHelper';
+import styles from '../styles/quiz-styles.module.scss';
 
 export const QuizEnd = () => {
     // Access variables and functions from the QuizContext
@@ -15,23 +16,24 @@ export const QuizEnd = () => {
     
     // Render the QuizEnd view
     return (
-        <div className='end-view'>
-            <div className='final-score'>
-                <h2>You scored</h2>
-                <h3>{score} out of {totalQuestionNum}</h3>
+        <div className={styles.endView}>
+            <div className={styles.finalScore}>
+                <h3>You scored:</h3>
+                <h2>{score} out of {totalQuestionNum}</h2>
             </div>
-            <div className='rank'>
-                <div className='rank-text'>{rank}</div>
-                <img className='rank-img' src={ rankImages[rank] }></img>
+
+            <div className={styles.rank}>
+                <h3>Your rank is:</h3>
+                <h2>{rank}</h2>
+                <img src={ rankImages[rank] }></img>
             </div>
-            <div className='retry-btn-div'>
-                <button
-                    className='retry=btn'
-                    onClick={() => resetQuiz()}
-                >
-                    Retry quiz
-                </button>
-            </div>
+
+            <button
+                className={styles.primaryBtn}
+                onClick={() => resetQuiz()}
+            >
+                Retry quiz
+            </button>
         </div>
     );
 }

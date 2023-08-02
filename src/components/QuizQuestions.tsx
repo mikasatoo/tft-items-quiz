@@ -314,7 +314,7 @@ export const QuizQuestions = () => {
             {answer !== '' ? (
                 <div className={result.output === '' ? styles.active : styles.inactive}>
                     <button
-                        className={styles.primaryButton}
+                        className={styles.primaryBtn}
                         onClick={() => 
                             (result.output === '' ? handleSubmit() : toast.error("You have already submitted your answer!"))
                         }
@@ -330,7 +330,7 @@ export const QuizQuestions = () => {
                     <p className={styles.correctAnswer}>{result.correctAnswer}</p>
 
                     <button
-                        className={styles.primaryButton}
+                        className={styles.primaryBtn}
                         onClick={() => handleNext()}
                     >
                         Next

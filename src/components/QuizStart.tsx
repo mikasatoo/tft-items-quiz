@@ -20,7 +20,8 @@ export const QuizStart = () => {
         <div className={styles.startView}>
             <h1>Teamfight Tactics</h1>
             <h2>⚔️ Items Quiz ⚔️</h2>
-            <div>
+
+            <div className={styles.questionNumBtns}>
                 <button
                     className={styles.secondaryBtn}
                     onClick={() => updateTotalQuestionNum(5)}
@@ -34,9 +35,10 @@ export const QuizStart = () => {
                     10 questions
                 </button>
             </div>
+
             <div>
                 <button
-                    className={styles.primaryButton}
+                    className={styles.primaryBtn}
                     onClick={() => handlePlay()}
                 >
                     Play

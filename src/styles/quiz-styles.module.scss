@@ -55,6 +55,7 @@ h1 {
 h2 {
     @include heading-margins;
     font-size: 36px;
+    color: $secondary-text;
 }
 
 h3 {
@@ -75,11 +76,12 @@ p {
 }
 
 // Additional styling for QuizStart view
-.startView {
-    h2 {
-        color: $secondary-text;
-    }
-}
+// .startView {
+//     .questionNumBtns {
+//         margin-top: 20px;
+//         margin-bottom: 10px;
+//     }
+// }
 
 // Additional styling for QuizQuestions view
 .questionsView {
@@ -87,6 +89,7 @@ p {
 
     .progressBar {
         width: 90%;
+        max-width: 850px;
 
         p {
             margin-bottom: 10px;
@@ -101,11 +104,13 @@ p {
         margin-bottom: 20px;
         font-size: 20px;
         width: 90%;
+        max-width: 850px;
     }
 
     .questionContent {
         margin-bottom: 10px;
         width: 90%;
+        max-width: 850px;
 
         p {
             margin-bottom: 10px;
@@ -155,5 +160,14 @@ p {
 
 // Additional styling for QuizEnd view
 .endView {
+    @include flex-column-container;
 
+    .rank {
+        margin-top: 20px;
+        margin-bottom: 20px;
+
+        img {
+            width: 150px;
+        }
+    }
 }
