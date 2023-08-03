@@ -1,4 +1,4 @@
-import { useEffect, useState } from 'react';
+import { useEffect, useState, useRef } from 'react';
 import { useQuizContext } from '../context';
 import { itemImages, items } from '../helper/ItemsHelper';
 import { toast } from 'react-hot-toast';
@@ -61,6 +61,9 @@ export const QuizQuestions = () => {
         option3Img1: '', option3Img2: '',
         option4Img1: '', option4Img2: ''
     });
+
+    // Option button reference
+    const optionRef = useRef<HTMLButtonElement>(null);
 
     // Component to render the progress bar
     const QuizProgressBar = () => {
@@ -259,6 +262,7 @@ export const QuizQuestions = () => {
                 onClick={() =>
                     (result.output === '' ? handleAnswerSelection(optionValue) : toast.error("You have already submitted your answer!"))
                 }
+                ref={optionRef}
             >
                 {optionLetter}. {optionValue}
                 {optionImg1 !== '' ? (
@@ -280,6 +284,14 @@ export const QuizQuestions = () => {
             console.log('New question created');
         }
     }, []);
+
+    // Focus on selected option button
+        // *** Not sure why the page seems to load with focus on a button still (same with question num buttons in QuizStart)
+    useEffect(() => {
+        if (optionRef.current) {
+            optionRef.current.focus();
+        }
+      }, []);
 
     // Render the QuizQuestions view
     return (
