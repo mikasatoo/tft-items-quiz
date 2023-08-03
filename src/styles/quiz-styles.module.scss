@@ -21,7 +21,6 @@ $secondary-text: #579dd4;
 
 @mixin grid-container {
     display: grid;
-    gap: 20px;
     justify-content: center;
     align-content: center;
 }
@@ -120,6 +119,7 @@ p {
 
         .questionContentImgs {
             @include grid-container;
+            gap: 20px;
             grid-template-columns: repeat(auto-fit, 64px);
             margin-bottom: 10px;
 
@@ -132,8 +132,13 @@ p {
 
     .options {
         @include grid-container;
+        grid-gap: 20px;
         grid-template-columns: repeat(2, auto-fit);
+        // grid-template-rows: repeat(2, auto-fit);
         width: 100%;
+        // align-items: center;
+        // justify-items: center;
+
     }
 
     .result {

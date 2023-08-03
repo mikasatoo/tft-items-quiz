@@ -262,10 +262,10 @@ export const QuizQuestions = () => {
             >
                 {optionLetter}. {optionValue}
                 {optionImg1 !== '' ? (
-                <div>
-                    <img src={optionImg1}></img>
-                    {optionImg2 !== '' ? <img src={optionImg2}></img> : ''}
-                </div>
+                    <div className={styles.optionImgs}>
+                        <img src={optionImg1}></img>
+                        {optionImg2 !== '' ? <img src={optionImg2}></img> : ''}
+                    </div>
                 ) : ('')}
             </button>
         )

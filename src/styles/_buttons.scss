@@ -6,6 +6,12 @@ $btn-border: #d47559;
 $correct: #28a745;
 $incorrect: #dc3545;
 
+@mixin grid-container {
+    display: grid;
+    justify-content: center;
+    align-content: center;
+}
+
 button {
     font-size: 16px;
     border-radius: 8px;
@@ -36,8 +42,13 @@ button {
         width: 200px;
         // *** how to make them all the same height?? (don't want item ones to be same height as ability ones though)
 
-        //*** how to space the text and images apart a bit, and the images from each other??
-
+        .optionImgs {
+            @include grid-container;
+            gap: 10px;
+            grid-template-columns: repeat(auto-fit, 64px);
+            margin-top: 10px;
+        }
+        
         img {
             width: 64px;
             height: auto;
