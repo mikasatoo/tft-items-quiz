@@ -28,10 +28,6 @@ export const Quiz = () => {
             <div className={styles.view}>
                 <HandleView view={quizStatus} />
             </div>
-        
-            <div className={styles.footer}>
-                mikasatoo
-            </div>
         </div>
     );
 }

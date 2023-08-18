@@ -64,25 +64,20 @@ h3 {
     font-size: 24px;
 }
 
-.footer {
-    position: absolute;
-    box-sizing: border-box;
-    bottom: 0;
-    width: 100%;
-    padding: 20px;
-}
-
 p {
     margin: 0;
 }
 
 // Additional styling for QuizStart view
-// .startView {
-//     .questionNumBtns {
-//         margin-top: 20px;
-//         margin-bottom: 10px;
-//     }
-// }
+.startView {
+    .footer {
+        position: absolute;
+        box-sizing: border-box;
+        bottom: 0;
+        width: 100%;
+        padding: 20px;
+    }
+}
 
 // Additional styling for QuizQuestions view
 .questionsView {

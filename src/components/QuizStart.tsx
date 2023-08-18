@@ -60,6 +60,10 @@ export const QuizStart = () => {
                     Play
                 </button>
             </div>
+
+            <div className={styles.footer}>
+                mikasatoo
+            </div>
         </div>
     );
 }
