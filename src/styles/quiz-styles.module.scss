@@ -1,6 +1,8 @@
 // Variables
 $primary-background: #0d202b;
+$question-background: #213547;
 $primary-text: hsla(0,0%,100%,.9);
+$question-text: #213547;
 $secondary-text: #579dd4;
 
 // Import partials
@@ -92,14 +94,21 @@ p {
 
         p {
             margin-bottom: 10px;
-        }
+            text-align: left;
+        }        
+    }
 
-        // *** Add styling for the progress bar itself
-
+    .questionBox {
+        @include flex-column-container;
+        background-color: $question-background;
+        box-sizing: border-box;
+        border-radius: 20px;
+        margin-top: 20px;
+        width: 90%;
     }
 
     .questionText {
-        margin-top: 30px;
+        margin-top: 20px;
         margin-bottom: 20px;
         font-size: 20px;
         width: 90%;
@@ -136,6 +145,7 @@ p {
         grid-template-columns: repeat(2, auto-fit);
         // grid-template-rows: repeat(2, auto-fit);
         width: 100%;
+        margin-bottom: 10px;
         // align-items: center;
         // justify-items: center;
 

@@ -68,7 +68,7 @@ export const QuizQuestions = () => {
     // Component to render the progress bar
     const QuizProgressBar = () => {
         const progress = ((currentQuestionNum - 1) / totalQuestionNum) * 100;
-        return <ProgressBar completed={progress} />
+        return <ProgressBar completed={progress} bgColor="#579dd4" />
     }
 
     // Function to create each question
@@ -297,29 +297,31 @@ export const QuizQuestions = () => {
     return (
         <div className={styles.questionsView}>
             <div className={styles.progressBar}>
-                <p>{currentQuestionNum} of {totalQuestionNum}</p>
+                <p><b>Question {currentQuestionNum}</b> / {totalQuestionNum}</p>
                 <QuizProgressBar />
             </div>
 
-            <p className={styles.questionText}>{questionText}</p>
+            <div className={styles.questionBox}>
+                <p className={styles.questionText}>{questionText}</p>
+                
+                <div className={styles.questionContent}>
+                    <p>{questionContent}</p>
+                    {questionContentImgs.img1 !== '' ? (
+                        <div className={styles.questionContentImgs}>
+                            <img src={questionContentImgs.img1}></img>
+                            {questionContentImgs.img2 !== '' ? <img src={questionContentImgs.img2}></img> : ''}
+                        </div>
+                    ) : ('')}
+                </div>
 
-            <div className={styles.questionContent}>
-                <p>{questionContent}</p>
-                {questionContentImgs.img1 !== '' ? (
-                    <div className={styles.questionContentImgs}>
-                        <img src={questionContentImgs.img1}></img>
-                        {questionContentImgs.img2 !== '' ? <img src={questionContentImgs.img2}></img> : ''}
+                <div className={styles.options}>
+                    <div className={result.output === '' ? styles.active : styles.inactive}>
+                        {/* *** Should I make this into a component and pass props, rather than a function??? */}
+                        {createOptionButton(1, shuffledOptions[0])}
+                        {createOptionButton(2, shuffledOptions[1])}
+                        {createOptionButton(3, shuffledOptions[2])}
+                        {createOptionButton(4, shuffledOptions[3])}
                     </div>
-                ) : ('')}
-            </div>
-
-            <div className={styles.options}>
-                <div className={result.output === '' ? styles.active : styles.inactive}>
-                    {/* *** Should I make this into a component and pass props, rather than a function??? */}
-                    {createOptionButton(1, shuffledOptions[0])}
-                    {createOptionButton(2, shuffledOptions[1])}
-                    {createOptionButton(3, shuffledOptions[2])}
-                    {createOptionButton(4, shuffledOptions[3])}
                 </div>
             </div>
 
