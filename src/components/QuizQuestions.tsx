@@ -68,7 +68,7 @@ export const QuizQuestions = () => {
     // Component to render the progress bar
     const QuizProgressBar = () => {
         const progress = ((currentQuestionNum - 1) / totalQuestionNum) * 100;
-        return <ProgressBar completed={progress} bgColor="#579dd4" />
+        return <ProgressBar completed={progress} bgColor="#579dd4" baseBgColor="#213547" />
     }
 
     // Function to create each question
