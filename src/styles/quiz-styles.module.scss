@@ -60,7 +60,8 @@ h2 {
 }
 
 h3 {
-    @include heading-margins;
+    margin-bottom: 10px;
+    margin-top: 10px;
     font-size: 24px;
 }
 
@@ -139,8 +140,10 @@ p {
         grid-gap: 20px;
         grid-template-columns: repeat(2, auto-fit);
         // grid-template-rows: repeat(2, auto-fit);
+        box-sizing: border-box;
         width: 100%;
         margin-bottom: 10px;
+        padding: 0 20px;
         // align-items: center;
         // justify-items: center;
 
@@ -172,8 +175,12 @@ p {
 .endView {
     @include flex-column-container;
 
+    h2 {
+        margin-bottom: 10px;
+    }
+
     .rank {
-        margin-top: 20px;
+        margin-top: 10px;
         margin-bottom: 20px;
 
         img {
