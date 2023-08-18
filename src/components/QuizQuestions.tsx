@@ -62,8 +62,9 @@ export const QuizQuestions = () => {
         option4Img1: '', option4Img2: ''
     });
 
-    // Option button reference
+    // Option button reference and focused state variable
     const optionRef = useRef<HTMLButtonElement>(null);
+    const [focused, setFocused] = useState<boolean>(false);
 
     // Component to render the progress bar
     const QuizProgressBar = () => {
@@ -185,6 +186,8 @@ export const QuizQuestions = () => {
 
     // Function to handle selecting an answer (before submitting)
     const handleAnswerSelection = (option: string) => {
+        toggleFocus();
+
         if (result.output === '') {
             setAnswer(option);
         }
@@ -262,7 +265,10 @@ export const QuizQuestions = () => {
                 onClick={() =>
                     (result.output === '' ? handleAnswerSelection(optionValue) : toast.error("You have already submitted your answer!"))
                 }
+                key={optionLetter}
                 ref={optionRef}
+                onFocus={focus}
+                onBlur={unFocus}
             >
                 {optionLetter}. {optionValue}
                 {optionImg1 !== '' ? (
@@ -275,7 +281,7 @@ export const QuizQuestions = () => {
         )
     }
 
-    // Run createQuestion() once per component render
+    // Run createQuestion() once per component mount
     let didRender = false;
     useEffect(() => {
         if (!didRender) {
@@ -285,13 +291,27 @@ export const QuizQuestions = () => {
         }
     }, []);
 
-    // Focus on selected option button
-        // *** Not sure why the page seems to load with focus on a button still (same with question num buttons in QuizStart)
+    // Focus (or blur) selected option button when the focused state variable changes
     useEffect(() => {
-        if (optionRef.current) {
+        console.log(optionRef.current);
+        if (focused) {
             optionRef.current.focus();
+        } else {
+            optionRef.current.blur();
         }
-      }, []);
+    }, [focused]);
+
+    const toggleFocus = () => {
+        setFocused(prev => !prev);
+    }
+
+    const focus =() => {
+        if(!focused) setFocused(true);
+    }
+
+    const unFocus = () => {
+        if (focused) setFocused(false);
+    }
 
     // Render the QuizQuestions view
     return (
