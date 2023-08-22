@@ -18,9 +18,9 @@
 </p>
 
 <p>
-    🖌️ Styled using <b>...</b>
+    🖌️ Styled using <b>Sass</b> and <b>CSS modules<b>
 </p>
 
 <p>
-    🕹️ Give it a try at ...
+    🕹️ Give it a try at ... (coming soon)
 </p>
