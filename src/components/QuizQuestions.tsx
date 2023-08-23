@@ -1,4 +1,4 @@
-import { useEffect, useState, useRef } from 'react';
+import { useEffect, useState, useRef, Ref } from 'react';
 import { useQuizContext } from '../context';
 import { itemImages, items } from '../helper/ItemsHelper';
 import { toast } from 'react-hot-toast';
@@ -62,7 +62,7 @@ export const QuizQuestions = () => {
         option4Img1: '', option4Img2: ''
     });
 
-    // Option button reference and focused state variable
+    // Option button references and focused state variable
     const optionRef = useRef<HTMLButtonElement>(null);
     const [focused, setFocused] = useState<boolean>(false);
 
@@ -187,7 +187,7 @@ export const QuizQuestions = () => {
     // Function to handle selecting an answer (before submitting)
     const handleAnswerSelection = (option: string) => {
         toggleFocus();
-
+        
         if (result.output === '') {
             setAnswer(option);
         }
@@ -294,9 +294,9 @@ export const QuizQuestions = () => {
     // Focus (or blur) selected option button when the focused state variable changes
     useEffect(() => {
         console.log(optionRef.current);
-        if (focused) {
+        if (optionRef.current && focused) {
             optionRef.current.focus();
-        } else {
+        } else if (optionRef.current) {
             optionRef.current.blur();
         }
     }, [focused]);
@@ -305,8 +305,8 @@ export const QuizQuestions = () => {
         setFocused(prev => !prev);
     }
 
-    const focus =() => {
-        if(!focused) setFocused(true);
+    const focus = () => {
+        if (!focused) setFocused(true);
     }
 
     const unFocus = () => {
@@ -336,7 +336,7 @@ export const QuizQuestions = () => {
 
                 <div className={styles.options}>
                     <div className={result.output === '' ? styles.active : styles.inactive}>
-                        {/* *** Should I make this into a component and pass props, rather than a function??? */}
+                        {/* *** Make this into a component and pass props instead of using a function??? */}
                         {createOptionButton(1, shuffledOptions[0])}
                         {createOptionButton(2, shuffledOptions[1])}
                         {createOptionButton(3, shuffledOptions[2])}
