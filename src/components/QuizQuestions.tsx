@@ -1,4 +1,4 @@
-import { useEffect, useState, useRef, Ref } from 'react';
+import { useEffect, useState } from 'react';
 import { useQuizContext } from '../context';
 import { itemImages, items } from '../helper/ItemsHelper';
 import { toast } from 'react-hot-toast';
@@ -51,7 +51,6 @@ export const QuizQuestions = () => {
     const [correctOption, setCorrectOption] = useState<string>('');
     const [shuffledOptions, setShuffledOptions] = useState<string[]>([]);
     const [answer, setAnswer] = useState<string>('');
-    // const [result, setResult] = useState<string>('');
     const [result, setResult] = useState({ output: '', correctAnswer: '' });
 
     const [questionContentImgs, setQuestionContentImgs] = useState({ img1: '', img2: '' });
@@ -61,10 +60,6 @@ export const QuizQuestions = () => {
         option3Img1: '', option3Img2: '',
         option4Img1: '', option4Img2: ''
     });
-
-    // Option button references and focused state variable
-    const optionRef = useRef<HTMLButtonElement>(null);
-    const [focused, setFocused] = useState<boolean>(false);
 
     // Component to render the progress bar
     const QuizProgressBar = () => {
@@ -186,8 +181,6 @@ export const QuizQuestions = () => {
 
     // Function to handle selecting an answer (before submitting)
     const handleAnswerSelection = (option: string) => {
-        toggleFocus();
-        
         if (result.output === '') {
             setAnswer(option);
         }
@@ -265,10 +258,6 @@ export const QuizQuestions = () => {
                 onClick={() =>
                     (result.output === '' ? handleAnswerSelection(optionValue) : toast.error("You have already submitted your answer!"))
                 }
-                key={optionLetter}
-                ref={optionRef}
-                onFocus={focus}
-                onBlur={unFocus}
             >
                 {optionLetter}. {optionValue}
                 {optionImg1 !== '' ? (
@@ -290,28 +279,6 @@ export const QuizQuestions = () => {
             console.log('New question created');
         }
     }, []);
-
-    // Focus (or blur) selected option button when the focused state variable changes
-    useEffect(() => {
-        console.log(optionRef.current);
-        if (optionRef.current && focused) {
-            optionRef.current.focus();
-        } else if (optionRef.current) {
-            optionRef.current.blur();
-        }
-    }, [focused]);
-
-    const toggleFocus = () => {
-        setFocused(prev => !prev);
-    }
-
-    const focus = () => {
-        if (!focused) setFocused(true);
-    }
-
-    const unFocus = () => {
-        if (focused) setFocused(false);
-    }
 
     // Render the QuizQuestions view
     return (
