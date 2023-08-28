@@ -49,9 +49,9 @@ $secondary-text: #579dd4;
 
 .view {
     box-sizing: border-box;
-    padding: 20px;
-    width: 100%;
+    width: 100vw;
     margin: auto 0;
+    padding: 20px 0;
 }
 
 h1 {
@@ -173,6 +173,7 @@ p {
     .result {
         margin-top: 10px;
         width: 90%;
+        max-width: 850px;
 
         .correctResult {
             font-size: 20px;
