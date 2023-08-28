@@ -1,6 +1,7 @@
 import { useQuizContext } from '../context';
 import { toast } from 'react-hot-toast';
 import styles from '../styles/quiz-styles.module.scss';
+import { FaGithub } from "react-icons/fa";
 
 export const QuizStart = () => {
     // Access functions from the QuizContext
@@ -51,7 +52,10 @@ export const QuizStart = () => {
             </div>
 
             <div className={styles.footer}>
-                mikasatoo
+                <p>mikasatoo</p>
+                <a href="https://github.com/mikasatoo/" target="_blank">
+                    <FaGithub />
+                </a>
             </div>
         </div>
     );

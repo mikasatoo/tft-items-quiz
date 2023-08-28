@@ -16,6 +16,12 @@ $secondary-text: #579dd4;
     justify-items: center;
 }
 
+@mixin flex-row-container {
+    display: flex;
+    align-content: center;
+    justify-content: center;
+}
+
 @mixin heading-margins {
     margin-block: 0;
     margin-bottom: 20px;
@@ -72,11 +78,25 @@ p {
 // Additional styling for QuizStart view
 .startView {
     .footer {
+        @include flex-row-container;
         position: absolute;
         box-sizing: border-box;
         bottom: 0;
+        left: 0;
+        right: 0;
         width: 100%;
         padding: 20px;
+        gap: 10px;
+        background-color: $question-background;
+
+        a {
+            color: $primary-text;
+            @include flex-row-container;
+
+            svg {
+                align-self: center;
+            }
+        }
     }
 }
 
