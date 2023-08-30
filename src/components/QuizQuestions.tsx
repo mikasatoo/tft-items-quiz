@@ -300,9 +300,9 @@ export const QuizQuestions = () => {
                         </div>
                     ) : ('')}
                 </div>
-
-                <div className={styles.options}>
-                    <div className={result.output === '' ? styles.active : styles.inactive}>
+                
+                <div className={result.output === '' ? styles.active : styles.inactive}>
+                    <div className={styles.options}>
                         {/* *** Make this into a component and pass props instead of using a function??? */}
                         {createOptionButton(1, shuffledOptions[0])}
                         {createOptionButton(2, shuffledOptions[1])}

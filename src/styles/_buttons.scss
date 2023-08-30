@@ -40,9 +40,9 @@ button {
     &.optionBtn {
         background-color: $secondary-btn-background;
         color: $secondary-btn-text;
-        width: 200px;
-        // *** how to make them all the same height?? (don't want item ones to be same height as ability ones though)
-
+        width: 230px;
+        margin: 5px;
+        
         .optionImgs {
             @include grid-container;
             gap: 10px;

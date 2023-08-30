@@ -160,14 +160,12 @@ p {
     .options {
         @include grid-container;
         grid-gap: 20px;
-        grid-template-columns: repeat(2, auto-fit);
-        // grid-template-rows: repeat(2, auto-fit);
+        grid-template-rows: 1fr 1fr;
+        grid-template-columns: 240px 240px;
         box-sizing: border-box;
         width: 100%;
-        margin-bottom: 10px;
+        margin-bottom: 20px;
         padding: 0 20px;
-        // align-items: center;
-        // justify-items: center;
     }
 
     .result {
