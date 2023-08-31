@@ -24,31 +24,33 @@ export const QuizStart = () => {
     // Render the QuizStart view
     return (
         <div className={styles.startView}>
-            <h1>Teamfight Tactics</h1>
-            <h2>⚔️ Items Quiz ⚔️</h2>
+            <div className={styles.startViewContent}>
+                <h1>Teamfight Tactics</h1>
+                <h2>⚔️ Items Quiz ⚔️</h2>
 
-            <div className={styles.questionNumBtnsDiv}>
-                <button
-                    className={styles.secondaryBtn}
-                    onClick={() => handleQuestionNumSelect(5)}
-                >
-                    5 questions
-                </button>
-                <button
-                    className={styles.secondaryBtn}
-                    onClick={() => handleQuestionNumSelect(10)}
-                >
-                    10 questions
-                </button>
-            </div>
+                <div className={styles.questionNumBtnsDiv}>
+                    <button
+                        className={styles.secondaryBtn}
+                        onClick={() => handleQuestionNumSelect(5)}
+                    >
+                        5 questions
+                    </button>
+                    <button
+                        className={styles.secondaryBtn}
+                        onClick={() => handleQuestionNumSelect(10)}
+                    >
+                        10 questions
+                    </button>
+                </div>
 
-            <div className={styles.playBtnDiv}>
-                <button
-                    className={styles.primaryBtn}
-                    onClick={() => handlePlay()}
-                >
-                    Play
-                </button>
+                <div className={styles.playBtnDiv}>
+                    <button
+                        className={styles.primaryBtn}
+                        onClick={() => handlePlay()}
+                    >
+                        Play
+                    </button>
+                </div>
             </div>
 
             <div className={styles.footer}>

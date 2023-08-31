@@ -48,14 +48,6 @@ body {
     background-color: $primary-background;
     color: $primary-text;
     text-align: center;
-    @include flex-column-container;
-}
-
-.view {
-    box-sizing: border-box;
-    width: 100vw;
-    margin: auto 0;
-    padding: 20px 0;
 }
 
 h1 {
@@ -82,8 +74,18 @@ p {
     margin: 0;
 }
 
-// Additional styling for QuizStart view
+// QuizStart view
 .startView {
+    @include flex-column-container;
+    box-sizing: border-box;
+    width: 100vw;
+    height: 100vh;
+    padding: 20px 0;
+
+    .startViewContent {
+        margin: auto 0;
+    }
+
     .questionNumBtnsDiv {
         min-width: 320px;
     }
@@ -115,9 +117,12 @@ p {
     }
 }
 
-// Additional styling for QuizQuestions view
+// QuizQuestions view
 .questionsView {
     @include flex-column-container;
+    box-sizing: border-box;
+    width: 100vw;
+    padding: 20px 0;
 
     .progressBar {
         width: 90%;
@@ -212,9 +217,14 @@ p {
     }
 }
 
-// Additional styling for QuizEnd view
+// QuizEnd view
 .endView {
     @include flex-column-container;
+    box-sizing: border-box;
+    width: 100vw;
+    position: absolute;
+    top: 50%;
+    transform: translate(0, -50%);
 
     h2 {
         margin-bottom: 10px;

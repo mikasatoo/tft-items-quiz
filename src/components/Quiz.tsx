@@ -25,9 +25,7 @@ export const Quiz = () => {
     
     return (
         <div className={styles.content}>
-            <div className={styles.view}>
-                <HandleView view={quizStatus} />
-            </div>
+            <HandleView view={quizStatus} />
         </div>
     );
 }
