@@ -27,7 +27,7 @@ export const QuizStart = () => {
             <h1>Teamfight Tactics</h1>
             <h2>⚔️ Items Quiz ⚔️</h2>
 
-            <div className={styles.questionNumBtns}>
+            <div className={styles.questionNumBtnsDiv}>
                 <button
                     className={styles.secondaryBtn}
                     onClick={() => handleQuestionNumSelect(5)}
@@ -42,7 +42,7 @@ export const QuizStart = () => {
                 </button>
             </div>
 
-            <div>
+            <div className={styles.playBtnDiv}>
                 <button
                     className={styles.primaryBtn}
                     onClick={() => handlePlay()}
