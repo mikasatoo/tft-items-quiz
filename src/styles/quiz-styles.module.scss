@@ -121,7 +121,7 @@ p {
 
     .progressBar {
         width: 90%;
-        max-width: 850px;
+        max-width: 640px;
 
         p {
             margin-bottom: 10px;
@@ -137,7 +137,7 @@ p {
         margin-top: 20px;
         margin-bottom: 10px;
         width: 90%;
-        max-width: 850px;
+        max-width: 640px;
     }
 
     .questionText {
@@ -145,13 +145,11 @@ p {
         margin-bottom: 20px;
         font-size: 20px;
         width: 90%;
-        max-width: 850px;
     }
 
     .questionContent {
         margin-bottom: 10px;
         width: 90%;
-        max-width: 850px;
 
         p {
             margin-bottom: 10px;
@@ -183,7 +181,7 @@ p {
         flex-wrap: wrap;
         box-sizing: border-box;
         width: 100%;
-        max-width: 540px;
+        // max-width: 540px;
         margin-bottom: 20px;
         padding: 0 20px;
     }
@@ -191,14 +189,14 @@ p {
     .result {
         margin-top: 10px;
         width: 90%;
-        max-width: 850px;
+        max-width: 640px;
 
         .correctResult {
             font-size: 20px;
             font-weight: 500;
             color: $correct;
         }
-
+        
         .incorrectResult {
             font-size: 20px;
             font-weight: 500;
