@@ -20,7 +20,6 @@ $secondary-text: #579dd4;
     display: flex;
     align-content: center;
     justify-content: center;
-    // min-width: 320px;
 }
 
 @mixin heading-margins {
@@ -174,12 +173,17 @@ p {
     }
 
     .options {
-        @include grid-container;
-        grid-gap: 20px;
-        grid-template-rows: 1fr 1fr;
-        grid-template-columns: 240px 240px;
+        // @include grid-container;
+        // grid-gap: 20px;
+        // grid-template-rows: 1fr 1fr;
+        // grid-template-columns: 240px 240px;
+        @include flex-row-container;
+        row-gap: 20px;
+        column-gap: 20px;
+        flex-wrap: wrap;
         box-sizing: border-box;
         width: 100%;
+        max-width: 540px;
         margin-bottom: 20px;
         padding: 0 20px;
     }
