@@ -36,6 +36,15 @@ $secondary-text: #579dd4;
 // Global styling
 body {
     min-width: 320px;
+    -ms-overflow-style: none;
+}
+
+body::-webkit-scrollbar {
+    display: none;
+}
+
+html {
+    scrollbar-width: none;
 }
 
 .content {
