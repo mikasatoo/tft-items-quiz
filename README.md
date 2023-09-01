@@ -22,5 +22,5 @@
 </p>
 
 <p>
-    🕹️ Give it a try at ... (coming soon)
+    🕹️ Give it a try at <a href="https://mikasatoo.github.io/tft-items-quiz/" target="_blank">TFT Items Quiz</a>
 </p>
