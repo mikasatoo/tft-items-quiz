@@ -56,7 +56,7 @@ import ZzRotPortal from '../assets/ZzRotPortal.png';
 import { v4 as uuidv4 } from 'uuid';
 
 // Object with image source references
-const itemImages = {
+const itemImages: Record<string, string> = {
     "Archangel's Staff": ArchangelsStaff,
     "B.F. Sword": BFSword,
     "Bloodthirster": Bloodthirster,

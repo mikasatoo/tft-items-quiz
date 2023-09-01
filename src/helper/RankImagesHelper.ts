@@ -6,7 +6,7 @@ import Silver from '../assets/Silver.png';
 import Gold from '../assets/Gold.png';
 
 // Object with image source references (corresponding to each rank)
-export const rankImages = {
+export const rankImages: Record<string, string> = {
     "Normals player": Featherknight,
     "Iron": Iron,
     "Bronze": Bronze,

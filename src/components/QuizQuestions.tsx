@@ -93,6 +93,7 @@ export const QuizQuestions = () => {
             setQuestionContentImgs({ img1: itemImages[subject.baseItem1], img2: itemImages[subject.baseItem2] });
         } else if (questionType === 'chooseBaseItems' || randomQuestion.type === 'chooseAbility') {
             setQuestionContent(subject.name);
+            // eslint-disable-next-line @typescript-eslint/no-unsafe-assignment
             setQuestionContentImgs({ img1: itemImages[subject.name], img2: '' });
         } else if (questionType === 'chooseItemFromAbility') {
             setQuestionContent(subject.ability);

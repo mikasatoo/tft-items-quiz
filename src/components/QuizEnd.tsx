@@ -1,3 +1,4 @@
+/* eslint-disable @typescript-eslint/no-unsafe-assignment */
 import { useQuizContext } from '../context';
 import { rankImages } from '../helper/RankImagesHelper';
 import styles from '../styles/quiz-styles.module.scss';
