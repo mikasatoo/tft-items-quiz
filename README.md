@@ -5,7 +5,7 @@
 </p>
 
 <p>
-    Note: In its current state, this quiz only includes <b>Set 9 items</b>, but I'm planning to update it real soon to be accurate for Set 9.5 and future releases.
+    Note: In its current state, this quiz only includes <b>Set 9</b> items, but I'm planning to update it real soon to be accurate for Set 9.5 and future releases.
 </p>
 
 <p>
