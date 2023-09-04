@@ -2,8 +2,10 @@
 
 <p>
     As a newbie to TFT, something I struggled with was quickly figuring out which items I could build and on which champions I should equip them. This quiz was built with the intention of helping myself (and hopefully other new players) to get better at identifying the different items and building stronger teams as a result. 
-    
-    Note: In its current state, this quiz only includes Set 9 items, but I'm planning to update it real soon to be accurate for Set 9.5 and future releases.
+</p>
+
+<p>
+    Note: In its current state, this quiz only includes <b>Set 9 items</b>, but I'm planning to update it real soon to be accurate for Set 9.5 and future releases.
 </p>
 
 <p>
