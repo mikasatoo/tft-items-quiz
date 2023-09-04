@@ -13,7 +13,7 @@
     <ul>
         <li>Choose from <b>5 or 10 questions</b></li>
         <li>Includes <b>multiple question types</b>, which are randomly selected from when generating each question</li>
-        <li>The <b>subject of each question (i.e. the combined item)</b> is randomly selected and not repeated in the same quiz</li>
+        <li>The subject of each question (i.e. the combined item) is <b>randomly selected</b> and not repeated in the same quiz</li>
         <li>All questions are <b>multiple-choice</b> - one choice will be the correct answer and the others are randomly generated (from the viable options)</li>
         <li>The <b>name and image</b> for each item is displayed to help you recognise them</li>
         <li>The <b>correct option</b> is shown after you submit your answer for each question</li>
@@ -30,7 +30,7 @@
 </p>
 
 <p>
-    🕹️ Give it a try at <a href="https://mikasatoo.github.io/tft-items-quiz/" target="_blank">TFT Items Quiz</a>
+    🕹️ Give it a try at <a href="https://mikasatoo.github.io/tft-items-quiz/" target="_blank"><b>TFT Items Quiz</b></a>
 </p>
 
 <p>
