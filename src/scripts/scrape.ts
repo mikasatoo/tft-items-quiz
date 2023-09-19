@@ -1,4 +1,4 @@
-import puppeteer, { ElementHandle } from "puppeteer";
+import puppeteer, { ElementHandle } from 'puppeteer';
 
 void (async () => {
   // Launch the browser and open a new blank page
@@ -11,42 +11,39 @@ void (async () => {
     timeout: 90000,
   });
 
+  // Select item divs
   await page.waitForSelector(".characters-list > div");
+  const itemDivs = await page.$$(".characters-list > div");
 
-  const divs = await page.$$(".characters-list > div");
-
-  for (const div of divs) {
-    await div.click();
+  // Loop through item divs to retrieve data
+  for (const itemDiv of itemDivs) {
+    await itemDiv.click();
     const table: ElementHandle<Element> | null = await page.$(".rt-table");
     const descriptionDiv = await table?.$(".item-bonus");
-    const itemImages = await table?.$$(".rt-table .character-icon");
+    const itemImgs = await table?.$$(".character-icon");
 
+    const description = await page.evaluate(el => el?.textContent, descriptionDiv);
+    
     const components: any[] = [];
-
-    for (const img of itemImages!) {
-      if (img) {
-        const src = await img.getProperty("src");
-        const name = await img.getProperty("alt");
+    // *** BELOW ***
+    for (const itemImg of itemImgs) {
+      if (itemImg) {
+        const src = await itemImg.getProperty("src");
+        const name = await itemImg.getProperty("alt");
         const nameValue = await name.jsonValue();
         const srcValue = await src.jsonValue();
         components.push({ src: srcValue, name: nameValue });
       }
     }
 
-    const description = await page.evaluate(
-      (el) => el?.textContent,
-      descriptionDiv
-    );
     console.log({
-      // eslint-disable-next-line @typescript-eslint/no-unsafe-assignment
-      baseComponent1: components[0],
-      // eslint-disable-next-line @typescript-eslint/no-unsafe-assignment
-      baseComponent2: components[1],
       description,
-      // eslint-disable-next-line @typescript-eslint/no-unsafe-assignment
+      baseItem1: components[0],
+      baseItem2: components[1],
       combinedItem: components[2],
     });
   }
 
+  // Close the browser
   await browser.close();
 })();
