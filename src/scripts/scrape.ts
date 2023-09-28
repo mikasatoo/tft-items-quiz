@@ -15,7 +15,7 @@ void (async () => {
   // Close the video player (could block some item divs)
   const closeVideoDiv = await page.$("div#closeIconHit");
   await closeVideoDiv?.click();
-  
+
   // Select the combined items
   await page.waitForSelector(".characters-list");
   const charactersLists = await page.$$(".characters-list");
@@ -47,7 +47,7 @@ void (async () => {
 
     // Check item hasn't already been scraped
     const combinedItemName = components[2].name;
-
+    
     if (scrapedItems.includes(combinedItemName)) {
       console.log(combinedItemName, "- already scraped");
     } else {
