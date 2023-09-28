@@ -11,11 +11,12 @@ void (async () => {
     timeout: 90000,
   });
 
-  // Select item divs
-  await page.waitForSelector(".characters-list > div");
-  const itemDivs = await page.$$(".characters-list > div");
+  // Select the combined items
+  await page.waitForSelector(".characters-list");
+  const charactersLists = await page.$$(".characters-list");
+  const itemDivs = await charactersLists[1].$$("div");  // only want the combined items info
 
-  // Loop through item divs to retrieve data
+  // Loop through the items to retrieve their data
   for (const itemDiv of itemDivs) {
     await itemDiv.click();
     const table: ElementHandle<Element> | null = await page.$(".rt-table");
@@ -25,8 +26,7 @@ void (async () => {
     const description = await page.evaluate(el => el?.textContent, descriptionDiv);
     
     const components: any[] = [];
-    // *** BELOW ***
-    for (const itemImg of itemImgs) {
+    for (const itemImg of itemImgs!) {
       if (itemImg) {
         const src = await itemImg.getProperty("src");
         const name = await itemImg.getProperty("alt");
