@@ -49,7 +49,7 @@ void (async () => {
     const combinedItemName = components[2].name;
     
     if (scrapedItems.includes(combinedItemName)) {
-      console.log(combinedItemName, "- already scraped");
+      console.log(combinedItemName, "has already been scraped");
     } else {
       combinedItems.push({
         combinedItem: components[2],
@@ -58,14 +58,13 @@ void (async () => {
         ability: description,
         used: false
       });
+      scrapedItems.push(combinedItemName);
     }
-
-    scrapedItems.push(combinedItemName);
   }
 
   // Create new file with the combinedItems object
   const content = combinedItems;
-  fs.writeFile('./src/scripts/scrapedItemsInfo.ts', JSON.stringify(content, null, 2), err => {
+  fs.writeFile('./src/helper/scrapedItemsHelper.ts', JSON.stringify(content, null, 2), err => {
     if (err) {
       console.error(err);
     }
@@ -73,4 +72,6 @@ void (async () => {
 
   // Close the browser
   await browser.close();
+
+  console.log(combinedItems.length, " items scraped.");
 })();
