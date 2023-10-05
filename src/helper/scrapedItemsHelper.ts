@@ -17,7 +17,7 @@ const items: Item[] = [];
 
 // Add all items to the array
 scrapedItemsData.forEach((item) => {
-    if (item.ability === "-") return;
+    if (item.ability === "-") return;   // skip items where the ability is just "-" (there are a few of these on the webpage being scraped)
 
     let editedAbility = item.ability;
     if (editedAbility.includes("\n\n")) {
