@@ -1,6 +1,6 @@
 /* eslint-disable @typescript-eslint/no-unsafe-assignment */
 import { useQuizContext } from '../context';
-import { rankImages } from '../helper/rankImagesHelper.ts';
+import { rankImages } from '../helper/RankImagesHelper.ts';
 import styles from '../styles/quiz-styles.module.scss';
 
 export const QuizEnd = () => {
