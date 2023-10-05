@@ -1,6 +1,18 @@
 import puppeteer, { ElementHandle } from 'puppeteer';
 import fs from 'fs';
 
+// Define types of objects
+type component = {
+  src: string
+  name: string
+}
+type combinedItem = {
+  combinedItem: component
+  baseItem1: component
+  baseItem2: component
+  ability: string | null | undefined
+}
+
 void (async () => {
   // Launch the browser and open a new blank page
   const browser = await puppeteer.launch({ headless: false });
@@ -22,8 +34,8 @@ void (async () => {
   const itemDivs = await charactersLists[1].$$("div:first-child");  // only want the combined items info
 
   // Loop through the items to retrieve their data
-  const scrapedItems: any[] = [];
-  const combinedItems: any[] = [];
+  const scrapedItems: string[] = [];
+  const combinedItems: combinedItem[] = [];
 
   for (const itemDiv of itemDivs) {
     await itemDiv.click();
@@ -34,19 +46,19 @@ void (async () => {
     
     const description = await page.evaluate(el => el?.textContent, descriptionDiv);
     
-    const components: any[] = [];
+    const components: component[] = [];
     for (const itemImg of itemImgs!) {
       if (itemImg) {
         const src = await itemImg.getProperty("src");
         const name = await itemImg.getProperty("alt");
         const nameValue = await name.jsonValue();
         const srcValue = await src.jsonValue();
-        components.push({ src: srcValue, name: nameValue });
+        components.push({ src: (srcValue as string), name: (nameValue as string) });
       }
     }
 
     // Check item hasn't already been scraped
-    const combinedItemName = components[2].name;
+    const combinedItemName: string = components[2].name;
     
     if (scrapedItems.includes(combinedItemName)) {
       console.log(combinedItemName, "has already been scraped");
@@ -56,7 +68,6 @@ void (async () => {
         baseItem1: components[0],
         baseItem2: components[1],
         ability: description,
-        used: false
       });
       scrapedItems.push(combinedItemName);
     }
@@ -64,12 +75,12 @@ void (async () => {
 
   // Create new file with the combinedItems object
   const content = combinedItems;
-  fs.writeFile('./src/helper/scrapedItemsHelper.ts', JSON.stringify(content, null, 2), err => {
+  fs.writeFile('./src/helper/scrapedItemsData.json', JSON.stringify(content, null, 2), err => {
     if (err) {
       console.error(err);
     }
   });
-
+  
   // Close the browser
   await browser.close();
 
