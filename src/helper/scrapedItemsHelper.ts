@@ -17,6 +17,8 @@ const items: Item[] = [];
 
 // Add all items to the array
 scrapedItemsData.forEach((item) => {
+    if (item.ability === "-") return;
+
     let editedAbility = item.ability;
     if (editedAbility.includes("\n\n")) {
         editedAbility = item.ability.split("\n\n").join(" ");
