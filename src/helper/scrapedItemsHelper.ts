@@ -2,8 +2,8 @@ import scrapedItemsData from './scrapedItemsData.json';
 
 // Define type of Item objects
 type Item = {
-    item: string
-    itemImg: string
+    name: string
+    img: string
     baseItem1: string
     baseItem1Img: string
     baseItem2: string
@@ -16,17 +16,24 @@ type Item = {
 const items: Item[] = [];
 
 // Add all items to the array
-scrapedItemsData.forEach((item) => 
+scrapedItemsData.forEach((item) => {
+    let editedAbility = item.ability;
+    if (editedAbility.includes("\n\n")) {
+        editedAbility = item.ability.split("\n\n").join(" ");
+    } else if (editedAbility.includes("\n")) {
+        editedAbility = item.ability.split("\n").join(" ");
+    }
+
     items.push({
-        item: item.combinedItem.name,
-        itemImg: item.combinedItem.src,
+        name: item.combinedItem.name,
+        img: item.combinedItem.src,
         baseItem1: item.baseItem1.name,
         baseItem1Img: item.baseItem1.src,
         baseItem2: item.baseItem2.name,
         baseItem2Img: item.baseItem2.src,
-        ability: item.ability,
+        ability: editedAbility,
         used: false
     })
-);
+});
 
 export { items };
