@@ -82,7 +82,6 @@ export const QuizQuestions = () => {
                 return !item.used;
             }
         });
-        console.log(itemsNotUsed.length);
         const randomItemIndex = Math.floor(Math.random() * itemsNotUsed.length);
         const subject = itemsNotUsed[randomItemIndex];
         const itemsArrayIndex = items.findIndex(item => item.name === subject.name);
@@ -238,7 +237,6 @@ export const QuizQuestions = () => {
         if (!didRender) {
             didRender = true;
             createQuestion();
-            console.log('New question created');
         }
     }, []);
 
