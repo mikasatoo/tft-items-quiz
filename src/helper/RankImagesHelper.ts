@@ -1,4 +1,3 @@
-// import Normals from '../assets/Normals.jpeg';
 import Featherknight from '../assets/Featherknight.png';
 import Iron from '../assets/Iron.png';
 import Bronze from '../assets/Bronze.png';
