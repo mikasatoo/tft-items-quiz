@@ -32,7 +32,3 @@
 <p>
     🕹️ Give it a try at <a href="https://mikasatoo.github.io/tft-items-quiz/" target="_blank"><b>TFT Items Quiz</b></a>
 </p>
-
-<p>
-    Icon image source: Swords by ProSymbols from <a href="https://thenounproject.com/browse/icons/term/swords/" target="_blank" title="Swords Icons">Noun Project</a> (CC BY 3.0)
-</p>
